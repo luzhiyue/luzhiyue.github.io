@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>格式转换工具</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/converter.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="index.html" class="active">工具</a></li>
+          <li><a href="#contact">联系</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="back-button-container"></div>
+
+    <section class="tools-section">
+      <div class="container">
+        <h1 class="tool-title">格式转换工具</h1>
+        <div class="converter-tools">
+          <!-- 时间格式转换 -->
+          <div class="tool-box">
+            <h2>时间格式转换</h2>
+            <div class="input-group">
+              <input type="text" id="timestamp" placeholder="输入时间戳或日期字符串" />
+              <select id="time-format">
+                <option value="timestamp">时间戳</option>
+                <option value="iso">ISO格式</option>
+                <option value="local">本地时间</option>
+              </select>
+              <button class="tool-btn" onclick="convertTime()">转换</button>
+            </div>
+            <div id="time-result" class="result-box"></div>
+          </div>
+
+          <!-- 进制转换 -->
+          <div class="tool-box">
+            <h2>进制转换</h2>
+            <div class="input-group">
+              <input type="text" id="number-input" placeholder="输入数字" />
+              <select id="from-base">
+                <option value="10">十进制</option>
+                <option value="2">二进制</option>
+                <option value="8">八进制</option>
+                <option value="16">十六进制</option>
+              </select>
+              <select id="to-base">
+                <option value="2">二进制</option>
+                <option value="8">八进制</option>
+                <option value="10">十进制</option>
+                <option value="16">十六进制</option>
+              </select>
+              <button class="tool-btn" onclick="convertBase()">转换</button>
+            </div>
+            <div id="base-result" class="result-box"></div>
+          </div>
+
+          <!-- 颜色格式转换 -->
+          <div class="tool-box">
+            <h2>颜色格式转换</h2>
+            <div class="input-group">
+              <input
+                type="text"
+                id="color-input"
+                placeholder="输入颜色值 (如: #FF0000 或 rgb(255,0,0))"
+              />
+              <input type="color" id="color-picker" />
+              <button class="tool-btn" onclick="convertColor()">转换</button>
+            </div>
+            <div id="color-result" class="result-box">
+              <div class="color-preview"></div>
+              <div class="color-values"></div>
+            </div>
+          </div>
+
+          <!-- 单位转换 -->
+          <div class="tool-box">
+            <h2>单位转换</h2>
+            <div class="input-group">
+              <input type="number" id="unit-value" placeholder="输入数值" />
+              <select id="unit-type">
+                <option value="length">长度</option>
+                <option value="weight">重量</option>
+                <option value="temperature">温度</option>
+              </select>
+              <select id="from-unit"></select>
+              <select id="to-unit"></select>
+              <button class="tool-btn" onclick="convertUnit()">转换</button>
+            </div>
+            <div id="unit-result" class="result-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      fetch('../components/back-button.html')
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById('back-button-container').innerHTML = data
+        })
+    </script>
+    <script src="../js/converter.js"></script>
+  </body>
+</html>

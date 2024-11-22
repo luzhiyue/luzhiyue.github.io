@@ -1,0 +1,114 @@
+.network-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.tool-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tool-box h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.tool-btn {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.result-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-family: monospace;
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.ip-info {
+  margin-bottom: 20px;
+}
+
+.ip-info p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.ip-info span {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.port-check .input-group {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 10px;
+}
+
+.port-check .tool-btn {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+}
+
+.port-check #port-number {
+  width: 100px;
+}
+
+@media (max-width: 768px) {
+  .network-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .port-check .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .port-check #port-number {
+    width: 100%;
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网络工具</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/network.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="index.html" class="active">工具</a></li>
+          <li><a href="#contact">联系</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="back-button-container"></div>
+
+    <section class="tools-section">
+      <div class="container">
+        <h1 class="tool-title">网络工具</h1>
+        <div class="network-tools">
+          <!-- IP查询工具 -->
+          <div class="tool-box">
+            <h2>IP地址查询</h2>
+            <div class="ip-info">
+              <p>您的IP地址：<span id="current-ip">正在获取...</span></p>
+              <p>地理位置：<span id="ip-location">正在获取...</span></p>
+            </div>
+            <button class="tool-btn" onclick="refreshIPInfo()">刷新</button>
+          </div>
+
+          <!-- Ping测试 -->
+          <div class="tool-box">
+            <h2>Ping测试</h2>
+            <div class="input-group">
+              <input type="text" id="ping-host" placeholder="输入域名或IP地址" />
+              <button class="tool-btn" onclick="startPing()">开始测试</button>
+            </div>
+            <div id="ping-result" class="result-box"></div>
+          </div>
+
+          <!-- DNS查询 -->
+          <div class="tool-box">
+            <h2>DNS查询</h2>
+            <div class="input-group">
+              <input type="text" id="dns-domain" placeholder="输入域名" />
+              <button class="tool-btn" onclick="queryDNS()">查询</button>
+            </div>
+            <div id="dns-result" class="result-box"></div>
+          </div>
+
+          <!-- 端口扫描 -->
+          <div class="tool-box">
+            <h2>端口检测</h2>
+            <div class="input-group">
+              <input type="text" id="port-host" placeholder="输入域名或IP地址" />
+              <input type="number" id="port-number" placeholder="端口号" min="1" max="65535" />
+              <button class="tool-btn" onclick="checkPort()">检测</button>
+            </div>
+            <div id="port-result" class="result-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      fetch('../components/back-button.html')
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById('back-button-container').innerHTML = data
+        })
+    </script>
+    <script src="../js/network.js"></script>
+  </body>
+</html>

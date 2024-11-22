@@ -1,0 +1,102 @@
+.converter-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.tool-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tool-box h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group select {
+  padding: 10px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.input-group input {
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-group select {
+  min-width: 100px;
+}
+
+.tool-btn {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.result-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  min-height: 60px;
+}
+
+/* 颜色转换特殊样式 */
+.color-preview {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.color-values {
+  font-family: monospace;
+}
+
+#color-picker {
+  width: 50px;
+  height: 38px;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .converter-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group input,
+  .input-group select {
+    width: 100%;
+  }
+}

@@ -87,3 +87,76 @@ body {
 .cta-button:hover {
   background-color: #0056b3;
 }
+
+/* 修改工具页面的样式 */
+.tools-section {
+  padding: 100px 0 50px 0; /* 增加顶部内边距 */
+}
+
+.tools-section h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tool-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+  text-decoration: none; /* 移除链接下划线 */
+  color: inherit; /* 继承原有文字颜色 */
+  display: block; /* 使整个卡片可点击 */
+  cursor: pointer; /* 显示手型光标 */
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tool-card h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.tool-card p {
+  color: #666;
+  margin: 0;
+}
+
+.back-button {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: #333;
+}
+
+.back-button:hover {
+  transform: translateX(-3px);
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,182 @@
+.image-tool {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  border-color: #007bff;
+  background: #f8f9fa;
+}
+
+.upload-area.dragover {
+  border-color: #28a745;
+  background: #e9ecef;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-content svg {
+  width: 48px;
+  height: 48px;
+  stroke: #6c757d;
+}
+
+.upload-content p {
+  color: #6c757d;
+  margin: 0;
+}
+
+.image-workspace {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.preview-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#previewImage {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 4px;
+}
+
+.image-info {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.control-panel {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.control-group {
+  margin-bottom: 25px;
+}
+
+.control-group h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.control-item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-item label {
+  min-width: 80px;
+  color: #495057;
+}
+
+.control-item input[type='number'],
+.control-item input[type='range'],
+.control-item select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.control-item input[type='range'] {
+  padding: 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tool-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tool-btn:hover {
+  transform: translateY(-2px);
+}
+
+.tool-btn.primary {
+  background: #007bff;
+  color: white;
+}
+
+.tool-btn.success {
+  background: #28a745;
+  color: white;
+}
+
+.tool-btn.primary:hover {
+  background: #0056b3;
+}
+
+.tool-btn.success:hover {
+  background: #218838;
+}
+
+@media (max-width: 768px) {
+  .image-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 裁剪相关样式 */
+.cropper-container {
+  max-height: 500px;
+}
+
+.crop-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.crop-options {
+  margin-top: 15px;
+}
+
+/* 裁剪时的预览图容器样式 */
+.preview-container.cropping {
+  padding: 0;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.preview-container.cropping img {
+  max-height: none;
+  max-width: none;
+}
