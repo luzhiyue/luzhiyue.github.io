@@ -1,89 +1,89 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    line-height: 1.6;
-    color: #333;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* 导航栏样式 */
 .navbar {
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .nav-links {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 .nav-links li a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px 20px;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 20px;
+  transition: color 0.3s;
 }
 
-.nav-links li a:hover {
-    color: #007bff;
+.nav-links li a.active {
+  border-bottom: 5px solid #007bff;
 }
 
 /* 主页横幅样式 */
 .hero {
-    height: 100vh;
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding-top: 70px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-top: 70px;
 }
 
 .hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 30px;
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 30px;
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
