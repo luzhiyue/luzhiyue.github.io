@@ -72,7 +72,18 @@
     </style>
   </head>
   <body>
-    <div id="header-container"></div>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="index.html" class="active">工具</a></li>
+          <li><a href="../games/index.html">游戏</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </nav>
     <section class="tools-section">
       <div class="container">
         <div class="section-header">
@@ -135,18 +146,5 @@
         }
       })
     })
-  </script>
-  <script>
-    async function loadComponents() {
-      try {
-        const headerResponse = await fetch('components/header.html')
-        const headerData = await headerResponse.text()
-        document.getElementById('header-container').innerHTML = headerData
-      } catch (error) {
-        console.error('加载组件失败:', error)
-      }
-    }
-
-    loadComponents()
   </script>
 </html>
