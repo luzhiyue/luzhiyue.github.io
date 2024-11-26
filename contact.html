@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>联系我们</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <!-- 百度地图API -->
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=YXvh2NL9qtyIBJuoWCktypGXaG10iQ2j"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于</a></li>
+          <li><a href="tools/index.html">工具</a></li>
+          <li><a href="contact.html" class="active">联系</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="contact-section">
+      <div class="container">
+        <h1>联系我们</h1>
+
+        <div class="contact-grid">
+          <!-- 联系信息 -->
+          <div class="contact-info">
+            <div class="info-card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                  />
+                </svg>
+              </div>
+              <h3>电话</h3>
+              <p>+86 123 4567 8900</p>
+            </div>
+
+            <div class="info-card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <path d="M22 6l-10 7L2 6" />
+                </svg>
+              </div>
+              <h3>邮箱</h3>
+              <p>contact@example.com</p>
+            </div>
+
+            <div class="info-card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <h3>地址</h3>
+              <p>上海市浦东新区XX路XX号</p>
+            </div>
+
+            <div class="info-card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  />
+                </svg>
+              </div>
+              <h3>社交媒体</h3>
+              <div class="social-links">
+                <a href="#" target="_blank">微信</a>
+                <a href="#" target="_blank">微博</a>
+                <a href="#" target="_blank">知乎</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地图容器 -->
+          <div class="map-container">
+            <div id="baiduMap"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/contact.js"></script>
+  </body>
+</html>
