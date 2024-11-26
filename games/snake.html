@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>贪吃蛇</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/games/snake.css" />
+  </head>
+  <body class="loading">
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <div class="game-info">
+        <div class="score">分数: <span id="score">0</span></div>
+        <div class="high-score">最高分: <span id="high-score">0</span></div>
+        <div class="controls">
+          <button id="start-btn">开始游戏</button>
+          <button id="pause-btn" disabled>暂停</button>
+        </div>
+        <div class="instructions">
+          <h3>操作说明</h3>
+          <p>↑ 向上移动</p>
+          <p>↓ 向下移动</p>
+          <p>← 向左移动</p>
+          <p>→ 向右移动</p>
+        </div>
+      </div>
+      <canvas id="snake-canvas"></canvas>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+          document.body.classList.add('loaded')
+        } catch (error) {
+          console.error('加载组件失败:', error)
+          document.body.classList.add('loaded')
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../js/games/snake.js"></script>
+  </body>
+</html>

@@ -12,18 +12,24 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
+        position: relative;
       }
 
       .section-header h1 {
         margin: 0;
         flex: 1;
         text-align: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        pointer-events: none;
       }
 
       .search-container {
-        position: static;
-        transform: none;
+        position: relative;
         min-width: 200px;
+        margin-left: auto;
       }
 
       .search-box {
@@ -32,7 +38,7 @@
         border-radius: 20px;
         font-size: 14px;
         width: 200px;
-        transition: all 0.3s ease;
+        transition: width 0.3s ease;
         outline: none;
       }
 
@@ -54,17 +60,17 @@
         }
 
         .section-header h1 {
-          text-align: center;
+          position: static;
+          transform: none;
+          margin-bottom: 15px;
         }
 
         .search-container {
           width: 100%;
+          margin: 0;
         }
 
-        .search-box {
-          width: 100%;
-        }
-
+        .search-box,
         .search-box:focus {
           width: 100%;
         }

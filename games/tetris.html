@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>俄罗斯方块</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/games/tetris.css" />
+  </head>
+  <body class="loading">
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <div class="game-info">
+        <div class="score">分数: <span id="score">0</span></div>
+        <div class="level">等级: <span id="level">1</span></div>
+        <div class="controls">
+          <button id="start-btn">开始游戏</button>
+          <button id="pause-btn" disabled>暂停</button>
+        </div>
+        <div class="next-piece">
+          <h3>下一个方块</h3>
+          <canvas id="next-piece-canvas"></canvas>
+        </div>
+      </div>
+      <canvas id="tetris-canvas"></canvas>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+          document.body.classList.add('loaded')
+        } catch (error) {
+          console.error('加载组件失败:', error)
+          document.body.classList.add('loaded')
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../js/games/tetris.js"></script>
+  </body>
+</html>

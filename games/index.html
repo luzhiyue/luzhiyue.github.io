@@ -20,15 +20,20 @@
         </ul>
       </div>
     </nav>
-    <div id="header-container"></div>
 
     <section class="games-section">
       <div class="container">
         <h1 class="section-title">小游戏集合</h1>
+
+        <!-- 添加搜索框 -->
+        <div class="search-container">
+          <input type="text" id="game-search" placeholder="搜索游戏..." class="search-input" />
+        </div>
+
         <div class="games-grid">
           <!-- 游戏卡片 -->
-          <div class="game-card">
-            <img src="../images/games/tetris.png" alt="俄罗斯方块" />
+          <div class="game-card" data-game-name="俄罗斯方块">
+            <img src="../images/games/tetris.svg" alt="俄罗斯方块" />
             <div class="game-info">
               <h3>俄罗斯方块</h3>
               <p>经典的俄罗斯方块游戏</p>
@@ -36,17 +41,17 @@
             </div>
           </div>
 
-          <div class="game-card">
-            <img src="../images/games/snake.png" alt="贪吃蛇" />
+          <div class="game-card" data-game-name="贪吃蛇">
+            <img src="../images/games/snake.svg" alt="贪吃蛇" />
             <div class="game-info">
               <h3>贪吃蛇</h3>
-              <p>永不过时的贪吃蛇游���</p>
+              <p>永不过时的贪吃蛇游戏</p>
               <a href="snake.html" class="game-btn">开始游戏</a>
             </div>
           </div>
 
-          <div class="game-card">
-            <img src="../images/games/2048.png" alt="2048" />
+          <div class="game-card" data-game-name="2048">
+            <img src="../images/games/2048.svg" alt="2048" />
             <div class="game-info">
               <h3>2048</h3>
               <p>数字合并益智游戏</p>
@@ -56,5 +61,7 @@
         </div>
       </div>
     </section>
+
+    <script src="../js/games/search.js"></script>
   </body>
 </html>
