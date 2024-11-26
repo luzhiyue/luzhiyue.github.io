@@ -1,0 +1,149 @@
+.weather-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+  margin-top: 80px;
+  background: linear-gradient(135deg, #72edf2 0%, #5151e5 100%);
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #5151e5;
+}
+
+.search-box button {
+  width: 46px;
+  border: none;
+  border-radius: 50%;
+  background: #5151e5;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-box button:hover {
+  background: #4141c5;
+  transform: scale(1.05);
+}
+
+.location {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.location h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.date {
+  color: #666;
+  font-size: 14px;
+}
+
+.weather-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.temperature {
+  font-size: 64px;
+  color: #333;
+  font-weight: 300;
+}
+
+.unit {
+  font-size: 24px;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.weather-icon i {
+  font-size: 64px;
+  color: #5151e5;
+}
+
+.weather-description {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.detail {
+  text-align: center;
+}
+
+.detail i {
+  font-size: 24px;
+  color: #5151e5;
+  margin-bottom: 8px;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info span:first-child {
+  font-size: 18px;
+  color: #333;
+}
+
+.label {
+  font-size: 12px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .weather-card {
+    margin: 10px;
+  }
+
+  .temperature {
+    font-size: 48px;
+  }
+
+  .weather-icon i {
+    font-size: 48px;
+  }
+}

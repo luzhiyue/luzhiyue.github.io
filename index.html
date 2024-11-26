@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>简约设计</title>
+    <title>首页</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -20,12 +20,15 @@
       </div>
     </nav>
 
-    <header class="hero">
-      <div class="container">
-        <h1>欢迎来到我的网站</h1>
-        <p>简约而不简单的设计理念</p>
-        <a href="#contact" class="cta-button">了解更多</a>
+    <!-- 添加时钟容器 -->
+    <div class="clock-container">
+      <div class="clock">
+        <div class="time"></div>
+        <div class="date"></div>
       </div>
-    </header>
+    </div>
+
+    <!-- 在body结束标签前引入JavaScript文件 -->
+    <script src="js/clock.js"></script>
   </body>
 </html>

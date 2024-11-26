@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>秒表计时器</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/stopwatch.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="stopwatch-container">
+      <div class="stopwatch">
+        <div class="display">
+          <span class="time">00:00:00</span>
+          <span class="milliseconds">.000</span>
+        </div>
+        <div class="controls">
+          <button id="startStop" class="btn start">开始</button>
+          <button id="reset" class="btn" disabled>重置</button>
+          <button id="lap" class="btn" disabled>计次</button>
+        </div>
+        <div class="laps">
+          <div class="laps-header">
+            <span>计次</span>
+            <span>时间</span>
+          </div>
+          <div class="laps-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 确保按顺序加载组件
+      async function loadComponents() {
+        try {
+          // 先加载头部
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          // 再加载返回按钮
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
+    </script>
+    <script src="../../js/stopwatch.js"></script>
+  </body>
+</html>

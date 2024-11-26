@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天气查询</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/weather.css" />
+    <!-- 添加天气图标库 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css"
+    />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="weather-container">
+      <div class="weather-card">
+        <div class="search-box">
+          <input type="text" placeholder="搜索城市..." id="searchInput" />
+          <button id="searchBtn"><i class="wi wi-search"></i></button>
+        </div>
+
+        <div class="weather-info">
+          <div class="location">
+            <h2>正在获取位置...</h2>
+            <p class="date"></p>
+          </div>
+
+          <div class="weather-main">
+            <div class="temperature">
+              <span class="temp">--</span>
+              <span class="unit">°C</span>
+            </div>
+            <div class="weather-icon">
+              <i class="wi wi-day-sunny"></i>
+            </div>
+          </div>
+
+          <div class="weather-description">
+            <span>--</span>
+          </div>
+
+          <div class="weather-details">
+            <div class="detail">
+              <i class="wi wi-humidity"></i>
+              <div class="detail-info">
+                <span class="humidity">--%</span>
+                <span class="label">湿度</span>
+              </div>
+            </div>
+            <div class="detail">
+              <i class="wi wi-strong-wind"></i>
+              <div class="detail-info">
+                <span class="wind">-- m/s</span>
+                <span class="label">风速</span>
+              </div>
+            </div>
+            <div class="detail">
+              <i class="wi wi-barometer"></i>
+              <div class="detail-info">
+                <span class="pressure">-- hPa</span>
+                <span class="label">气压</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 确保按顺序加载组件
+      async function loadComponents() {
+        try {
+          // 先加载头部
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          // 再加载返回按钮
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
+    </script>
+    <script src="../../js/weather.js"></script>
+  </body>
+</html>
