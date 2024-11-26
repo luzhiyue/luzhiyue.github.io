@@ -8,18 +8,7 @@
     <link rel="stylesheet" href="../css/network.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="container">
-        <div class="logo">LOGO</div>
-        <ul class="nav-links">
-          <li><a href="../index.html">首页</a></li>
-          <li><a href="../about.html">关于</a></li>
-          <li><a href="index.html" class="active">工具</a></li>
-          <li><a href="#contact">联系</a></li>
-        </ul>
-      </div>
-    </nav>
-
+    <div id="header-container"></div>
     <div id="back-button-container"></div>
 
     <section class="tools-section">
@@ -71,11 +60,24 @@
     </section>
 
     <script>
-      fetch('../components/back-button.html')
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById('back-button-container').innerHTML = data
-        })
+      // 确保按顺序加载组件
+      async function loadComponents() {
+        try {
+          // 先加载头部
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          // 再加载返回按钮
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
     </script>
     <script src="../js/network.js"></script>
   </body>

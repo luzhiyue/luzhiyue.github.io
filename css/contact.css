@@ -1,11 +1,13 @@
 .contact-section {
   padding: 60px 0;
+  margin-top: 40px;
 }
 
 .contact-section h1 {
   text-align: center;
   margin-bottom: 50px;
   color: #2c3e50;
+  padding-top: 20px;
 }
 
 .contact-grid {

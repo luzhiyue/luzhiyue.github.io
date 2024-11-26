@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计算器</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/calculator.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="calculator-container">
+      <div class="calculator">
+        <div class="display">
+          <div class="history">0</div>
+          <div class="result">0</div>
+        </div>
+        <div class="buttons">
+          <button class="operator" data-action="percent">%</button>
+          <button class="operator" data-action="clear-entry">CE</button>
+          <button class="operator" data-action="clear">C</button>
+          <button class="operator" data-action="backspace">⌫</button>
+
+          <button class="operator" data-action="reciprocal">1/x</button>
+          <button class="operator" data-action="square">x²</button>
+          <button class="operator" data-action="sqrt">√x</button>
+          <button class="operator" data-action="divide">÷</button>
+
+          <button class="number">7</button>
+          <button class="number">8</button>
+          <button class="number">9</button>
+          <button class="operator" data-action="multiply">×</button>
+
+          <button class="number">4</button>
+          <button class="number">5</button>
+          <button class="number">6</button>
+          <button class="operator" data-action="subtract">-</button>
+
+          <button class="number">1</button>
+          <button class="number">2</button>
+          <button class="number">3</button>
+          <button class="operator" data-action="add">+</button>
+
+          <button class="operator" data-action="negate">±</button>
+          <button class="number">0</button>
+          <button class="number" data-action="decimal">.</button>
+          <button class="operator" data-action="equals">=</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 确保按顺序加载组件
+      async function loadComponents() {
+        try {
+          // 先加载头部
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          // 再加载返回按钮
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
+    </script>
+    <script src="../../js/calculator.js"></script>
+  </body>
+</html>

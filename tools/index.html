@@ -5,6 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>工具集合</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      /* 修改搜索框位置和布局 */
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .section-header h1 {
+        margin: 0;
+        flex: 1;
+        text-align: center;
+      }
+
+      .search-container {
+        position: static;
+        transform: none;
+        min-width: 200px;
+      }
+
+      .search-box {
+        padding: 8px 15px;
+        border: 2px solid #007bff;
+        border-radius: 20px;
+        font-size: 14px;
+        width: 200px;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .search-box:focus {
+        width: 250px;
+        border-color: #0056b3;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+      }
+
+      /* 隐藏不匹配的卡片 */
+      .tool-card.hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .section-header {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .section-header h1 {
+          text-align: center;
+        }
+
+        .search-container {
+          width: 100%;
+        }
+
+        .search-box {
+          width: 100%;
+        }
+
+        .search-box:focus {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -21,7 +86,13 @@
 
     <section class="tools-section">
       <div class="container">
-        <h1>工具集合</h1>
+        <div class="section-header">
+          <h1>工具集合</h1>
+          <!-- 添加搜索框 -->
+          <div class="search-container">
+            <input type="text" class="search-box" placeholder="搜索工具..." id="searchTools" />
+          </div>
+        </div>
         <div class="tools-grid">
           <a href="json-formatter.html" class="tool-card">
             <h2>JSON格式化</h2>
@@ -39,8 +110,41 @@
             <h2>图片处理</h2>
             <p>图片压缩、格式转换等</p>
           </a>
+          <a href="calculator.html" class="tool-card">
+            <h2>计算器</h2>
+            <p>标准计算器，支持基础运算功能</p>
+          </a>
         </div>
       </div>
     </section>
   </body>
+
+  <script>
+    // 添加搜索功能
+    document.getElementById('searchTools').addEventListener('input', function (e) {
+      const searchText = e.target.value.toLowerCase()
+      const toolCards = document.querySelectorAll('.tool-card')
+
+      toolCards.forEach((card) => {
+        const title = card.querySelector('h2').textContent.toLowerCase()
+        const description = card.querySelector('p').textContent.toLowerCase()
+
+        if (title.includes(searchText) || description.includes(searchText)) {
+          card.classList.remove('hidden')
+        } else {
+          card.classList.add('hidden')
+        }
+      })
+
+      // 处理分类标题的显示/隐藏
+      document.querySelectorAll('.tools-category').forEach((category) => {
+        const visibleCards = category.querySelectorAll('.tool-card:not(.hidden)')
+        if (visibleCards.length === 0) {
+          category.style.display = 'none'
+        } else {
+          category.style.display = 'block'
+        }
+      })
+    })
+  </script>
 </html>
