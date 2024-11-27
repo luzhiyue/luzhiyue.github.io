@@ -1,0 +1,90 @@
+.tool-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 30px;
+  margin-top: 80px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 80px auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.current-timestamp-box,
+.timestamp-box,
+.date-time-box,
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #333;
+  margin-right: 10px;
+  flex: 1;
+  text-align: right;
+}
+
+input[type='number'],
+input[type='text'] {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  flex: 2;
+}
+
+.date-time-inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.date-time-inputs input {
+  width: 80px;
+  margin-right: 5px;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  flex: 1;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#dateTimeDisplay {
+  font-size: 1.2rem;
+  color: #333;
+  flex: 2;
+  text-align: left;
+}

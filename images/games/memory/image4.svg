@@ -1,0 +1,8 @@
+<!-- 保存为 image4.svg -->
+<svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="10" stroke="#8b4513" stroke-width="2" fill="#f5f7fa"/>
+  <path d="M8 8L10 6L12 8L14 6L16 8" stroke="#8b4513" stroke-width="2"/>
+  <circle cx="9" cy="12" r="1" fill="#8b4513"/>
+  <circle cx="15" cy="12" r="1" fill="#8b4513"/>
+  <path d="M9 16C10 17 14 17 15 16" stroke="#8b4513" stroke-width="2"/>
+</svg>
