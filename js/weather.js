@@ -1,6 +1,6 @@
 class WeatherApp {
   constructor() {
-    this.API_KEY = 'YOUR_OPENWEATHER_API_KEY' // 需要替换为实际的API密钥
+    this.API_KEY = 'b1810ac0064baf1fe8ebc28f16a81145' // 需要替换为实际的API密钥
     this.searchInput = document.getElementById('searchInput')
     this.searchBtn = document.getElementById('searchBtn')
 
