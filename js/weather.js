@@ -1,13 +1,14 @@
 class WeatherApp {
   constructor() {
-    this.API_KEY = 'b1810ac0064baf1fe8ebc28f16a81145' // 需要替换为实际的API密钥
+    this.API_KEY = 'b1810ac0064baf1fe8ebc28f16a81145'
     this.searchInput = document.getElementById('searchInput')
     this.searchBtn = document.getElementById('searchBtn')
 
-    this.setupEventListeners()
+    if (this.searchInput && this.searchBtn) {
+      this.setupEventListeners()
+    }
+
     this.getCurrentLocation()
-    this.updateDateTime()
-    setInterval(() => this.updateDateTime(), 1000)
   }
 
   setupEventListeners() {
@@ -17,10 +18,57 @@ class WeatherApp {
     })
   }
 
+  searchWeather() {
+    const city = this.searchInput.value.trim()
+    if (city) {
+      this.getWeatherByCity(city)
+    }
+  }
+
+  getWeatherByCity(city) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.cod === 200) {
+          this.updateCurrentWeather(data)
+          return this.getForecastByCity(city)
+        } else {
+          this.showError('城市未找到')
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching weather data:', error)
+        this.showError('获取天气信息失败')
+      })
+  }
+
+  getForecastByCity(city) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.cod === '200') {
+          this.updateHourlyForecast(data)
+          this.updateFutureForecast(data)
+        } else {
+          this.showError('无法获取预报数据')
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching forecast data:', error)
+        this.showError('获取预报信息失败')
+      })
+  }
+
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => this.getWeatherByCoords(position.coords),
+        (position) => {
+          this.getWeatherData(position.coords)
+        },
         (error) => {
           console.error('Error getting location:', error)
           this.getWeatherByCity('北京') // 默认城市
@@ -31,78 +79,109 @@ class WeatherApp {
     }
   }
 
-  async getWeatherByCoords(coords) {
+  async getWeatherData(coords) {
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
-      )
-      const data = await response.json()
-      this.updateUI(data)
+      const currentWeather = await this.getCurrentWeather(coords)
+      const forecast = await this.getForecast(coords)
+      this.updateUI(currentWeather, forecast)
     } catch (error) {
-      console.error('Error fetching weather:', error)
+      console.error('Error fetching weather data:', error)
       this.showError('获取天气信息失败')
     }
   }
 
-  async getWeatherByCity(city) {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
-      )
-      const data = await response.json()
-      if (response.ok) {
-        this.updateUI(data)
-      } else {
-        this.showError('未找到该城市')
-      }
-    } catch (error) {
-      console.error('Error fetching weather:', error)
-      this.showError('获取天气信息失败')
-    }
+  async getCurrentWeather(coords) {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
+    )
+    return await response.json()
   }
 
-  searchWeather() {
-    const city = this.searchInput.value.trim()
-    if (city) {
-      this.getWeatherByCity(city)
-    }
+  async getForecast(coords) {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&appid=${this.API_KEY}&units=metric&lang=zh_cn`
+    )
+    return await response.json()
   }
 
-  updateDateTime() {
-    const now = new Date()
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }
-    document.querySelector('.date').textContent = now.toLocaleDateString('zh-CN', options)
+  updateUI(current, forecast) {
+    this.updateCurrentWeather(current)
+    this.updateHourlyForecast(forecast)
+    this.updateFutureForecast(forecast)
   }
 
-  updateUI(data) {
-    // 更新位置
+  updateCurrentWeather(data) {
     document.querySelector('.location h2').textContent = data.name
-
-    // 更新温度
     document.querySelector('.temp').textContent = Math.round(data.main.temp)
-
-    // 更新天气描述
     document.querySelector('.weather-description span').textContent = data.weather[0].description
-
-    // 更新天气图标
-    const iconElement = document.querySelector('.weather-icon i')
-    iconElement.className = this.getWeatherIcon(data.weather[0].id)
-
-    // 更新详细信息
+    document.querySelector('.weather-icon i').className = this.getWeatherIcon(data.weather[0].id)
     document.querySelector('.humidity').textContent = `${data.main.humidity}%`
     document.querySelector('.wind').textContent = `${data.wind.speed} m/s`
     document.querySelector('.pressure').textContent = `${data.main.pressure} hPa`
   }
 
+  updateHourlyForecast(forecast) {
+    const hourlyList = document.getElementById('hourlyList')
+    if (!hourlyList) {
+      console.error('Element with id "hourlyList" not found.')
+      return
+    }
+
+    const next24Hours = forecast.list.slice(0, 8)
+    hourlyList.innerHTML = next24Hours
+      .map((item) => {
+        const time = new Date(item.dt * 1000)
+        return `
+        <div class="forecast-item">
+          <div class="time">${time.getHours()}:00</div>
+          <div class="icon">
+            <i class="${this.getWeatherIcon(item.weather[0].id)}"></i>
+          </div>
+          <div class="temp">${Math.round(item.main.temp)}°C</div>
+          <div class="desc">${item.weather[0].description}</div>
+        </div>
+      `
+      })
+      .join('')
+  }
+
+  updateFutureForecast(forecast) {
+    const futureList = document.getElementById('futureList')
+    if (!futureList) {
+      console.error('Element with id "futureList" not found.')
+      return
+    }
+
+    const dailyData = {}
+    forecast.list.forEach((item) => {
+      const date = new Date(item.dt * 1000).toLocaleDateString()
+      if (!dailyData[date]) {
+        dailyData[date] = item
+      }
+    })
+    const dailyForecast = Object.values(dailyData).slice(1, 7)
+    futureList.innerHTML = dailyForecast
+      .map((item) => {
+        const date = new Date(item.dt * 1000)
+        return `
+        <div class="forecast-item">
+          <div class="time">${date.toLocaleDateString('zh-CN', {
+            weekday: 'short',
+            month: 'numeric',
+            day: 'numeric',
+          })}</div>
+          <div class="icon">
+            <i class="${this.getWeatherIcon(item.weather[0].id)}"></i>
+          </div>
+          <div class="temp">${Math.round(item.main.temp)}°C</div>
+          <div class="desc">${item.weather[0].description}</div>
+        </div>
+      `
+      })
+      .join('')
+  }
+
   getWeatherIcon(code) {
-    // 根据OpenWeather的天气代码返回对应的weather-icons类名
     const icons = {
       200: 'wi wi-thunderstorm',
       300: 'wi wi-sprinkle',
@@ -115,22 +194,15 @@ class WeatherApp {
       803: 'wi wi-cloudy',
       804: 'wi wi-cloudy',
     }
-
     const firstDigit = Math.floor(code / 100)
     return icons[code] || icons[firstDigit * 100] || 'wi wi-day-sunny'
   }
 
   showError(message) {
     document.querySelector('.location h2').textContent = message
-    document.querySelector('.temp').textContent = '--'
-    document.querySelector('.weather-description span').textContent = '未知'
-    document.querySelector('.humidity').textContent = '--%'
-    document.querySelector('.wind').textContent = '-- m/s'
-    document.querySelector('.pressure').textContent = '-- hPa'
   }
 }
 
-// 初始化天气应用
 document.addEventListener('DOMContentLoaded', () => {
   new WeatherApp()
 })

@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>首页</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css"
+    />
   </head>
   <body>
     <nav class="navbar">
       <div class="container">
         <div class="logo">LOGO</div>
+        <div class="clock">
+          <div class="time"></div>
+          <div class="date"></div>
+        </div>
         <ul class="nav-links">
           <li><a href="index.html" class="active">首页</a></li>
           <li><a href="about.html">关于</a></li>
@@ -20,15 +28,72 @@
       </div>
     </nav>
 
-    <!-- 添加时钟容器 -->
-    <div class="clock-container">
-      <div class="clock">
-        <div class="time"></div>
-        <div class="date"></div>
+    <div class="weather-container">
+      <div class="weather-card">
+        <div class="weather-info">
+          <div class="location">
+            <h2>正在获取位置...</h2>
+            <p class="date"></p>
+          </div>
+
+          <div class="weather-main">
+            <div class="temperature">
+              <span class="temp">--</span>
+              <span class="unit">°C</span>
+            </div>
+            <div class="weather-icon">
+              <i class="wi wi-day-sunny"></i>
+            </div>
+          </div>
+
+          <div class="weather-description">
+            <span>--</span>
+          </div>
+
+          <div class="weather-details">
+            <div class="detail">
+              <i class="wi wi-humidity"></i>
+              <div class="detail-info">
+                <span class="humidity">--%</span>
+                <span class="label">湿度</span>
+              </div>
+            </div>
+            <div class="detail">
+              <i class="wi wi-strong-wind"></i>
+              <div class="detail-info">
+                <span class="wind">-- m/s</span>
+                <span class="label">风速</span>
+              </div>
+            </div>
+            <div class="detail">
+              <i class="wi wi-barometer"></i>
+              <div class="detail-info">
+                <span class="pressure">-- hPa</span>
+                <span class="label">气压</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 24小时预报 -->
+        <div class="hourly-forecast">
+          <h3>24小时预报</h3>
+          <div class="forecast-scroll">
+            <div class="forecast-list" id="hourlyList"></div>
+          </div>
+        </div>
+
+        <!-- 未来6天预报 -->
+        <div class="future-weather">
+          <h3>未来5天预报</h3>
+          <div class="forecast-scroll">
+            <div class="forecast-list" id="futureList"></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 在body结束标签前引入JavaScript文件 -->
     <script src="js/clock.js"></script>
+    <script src="js/weather.js"></script>
   </body>
 </html>

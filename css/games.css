@@ -5,7 +5,7 @@
 .games-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 2.5rem;
   padding: 1rem;
 }
 
@@ -17,6 +17,9 @@
   min-height: 280px;
   aspect-ratio: 4/3;
   opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .game-card:hover {
@@ -31,11 +34,10 @@
 }
 
 .game-info {
-  padding: 1rem;
-  height: calc(100% - 160px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex: 1;
+  padding: 15px;
 }
 
 .game-info h3 {
@@ -60,8 +62,10 @@
   border-radius: 5px;
   transition: background 0.3s;
   text-align: center;
-  margin-top: 0.8rem;
+  margin-top: auto;
+  align-self: center;
   font-size: 0.9rem;
+  width: 80%;
 }
 
 .game-btn:hover {

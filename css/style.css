@@ -8,6 +8,7 @@ body {
   font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   line-height: 1.6;
   color: #333;
+  padding-top: 70px;
 }
 
 .container {
@@ -23,6 +24,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 1000;
 }
 
 .navbar .container {
@@ -30,11 +32,13 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  padding: 0 20px;
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
+  margin-right: 20px;
 }
 
 .nav-links {
@@ -180,25 +184,20 @@ body {
 }
 
 .clock {
-  text-align: center;
-  padding: 40px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 20px;
 }
 
 .time {
-  font-size: 5rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: #2c3e50;
-  margin-bottom: 10px;
-  font-family: 'Arial', sans-serif;
 }
 
 .date {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #7f8c8d;
   font-weight: 300;
 }
@@ -211,4 +210,222 @@ body {
   .date {
     font-size: 1.2rem;
   }
+}
+
+/* 天气卡片样式 */
+.weather-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.location h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.weather-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.temperature {
+  display: flex;
+  align-items: baseline;
+}
+
+.temp {
+  font-size: 4rem;
+  font-weight: 300;
+  color: #2c3e50;
+}
+
+.unit {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  margin-left: 0.5rem;
+}
+
+.weather-icon i {
+  font-size: 4rem;
+  color: #2c3e50;
+}
+
+.weather-description {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.detail {
+  text-align: center;
+}
+
+.detail i {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info span {
+  color: #7f8c8d;
+}
+
+.detail-info .label {
+  font-size: 0.9rem;
+}
+
+.hourly-forecast,
+.history-weather,
+.future-weather {
+  margin-top: 2rem;
+}
+
+.forecast-scroll {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.forecast-list {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.forecast-item {
+  min-width: 100px;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-item .time {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.forecast-item .icon i {
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.forecast-item .temp {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0.5rem 0;
+}
+
+.forecast-item .desc {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .clock-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .weather-container {
+    width: 100%;
+  }
+
+  .weather-main {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .weather-details {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .temp {
+    font-size: 3rem;
+  }
+
+  .weather-icon i {
+    font-size: 3rem;
+  }
+}
+
+/* 搜索框样式 */
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-right: 10px;
+  transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.search-box button {
+  padding: 0.8rem 1.5rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.search-box button:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.search-box button i {
+  font-size: 1.2rem;
 }
