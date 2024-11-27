@@ -53,6 +53,42 @@
         display: none;
       }
 
+      /* 添加工具卡片网格布局的固定样式 */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .tool-card {
+        display: block;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* 确保卡片内容不会影响卡片大小 */
+      .tool-card h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.2em;
+        word-wrap: break-word;
+      }
+
+      .tool-card p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9em;
+        word-wrap: break-word;
+      }
+
       @media (max-width: 768px) {
         .section-header {
           flex-direction: column;
@@ -73,6 +109,10 @@
         .search-box,
         .search-box:focus {
           width: 100%;
+        }
+
+        .tools-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>

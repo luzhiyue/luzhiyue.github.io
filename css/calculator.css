@@ -1,18 +1,18 @@
 .calculator-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  min-height: calc(100vh - 80px);
+  align-items: center;
+  min-height: 80vh;
   padding: 20px;
-  margin-top: 80px;
 }
 
 .calculator {
   background-color: #f0f0f0;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   width: 320px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .display {
@@ -21,20 +21,27 @@
   margin-bottom: 20px;
   border-radius: 5px;
   text-align: right;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .history {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
-  min-height: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  min-height: 24px;
 }
 
 .result {
-  font-size: 32px;
+  font-size: 36px;
+  font-weight: bold;
   color: #333;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-height: 46px;
 }
 
 .buttons {
@@ -45,21 +52,21 @@
 
 button {
   border: none;
+  background-color: #fff;
   padding: 15px;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-height: 60px;
 }
 
-.number {
-  background-color: #fff;
-  color: #333;
+button:hover {
+  background-color: #e0e0e0;
 }
 
-.operator {
-  background-color: #e8e8e8;
-  color: #333;
+button.operator {
+  background-color: #f8f8f8;
 }
 
 button[data-action='equals'] {
@@ -67,17 +74,21 @@ button[data-action='equals'] {
   color: white;
 }
 
-button:hover {
-  opacity: 0.8;
+button[data-action='equals']:hover {
+  background-color: #0056b3;
 }
 
-button:active {
-  transform: scale(0.95);
+* {
+  box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .calculator {
-    width: 100%;
-    max-width: 320px;
-  }
+.display div {
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.display div::-webkit-scrollbar {
+  display: none;
 }
