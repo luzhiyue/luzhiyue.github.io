@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>井字棋游戏</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/tic-tac-toe.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <h1>井字棋游戏</h1>
+      <div class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <p id="message"></p>
+      <button id="restartBtn">重新开始</button>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+          document.body.classList.add('loaded')
+        } catch (error) {
+          console.error('加载组件失败:', error)
+          document.body.classList.add('loaded')
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../js/tic-tac-toe.js"></script>
+  </body>
+</html>

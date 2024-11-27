@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>猜数字游戏</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/guess-number.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <h1>猜数字游戏</h1>
+      <p>计算机已生成一个1到100之间的随机数，快来猜猜看！</p>
+      <input type="number" id="guessInput" placeholder="输入你的猜测" min="1" max="100" />
+      <button id="guessBtn">猜测</button>
+      <p id="message"></p>
+      <button id="restartBtn" style="display: none">重新开始</button>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+          document.body.classList.add('loaded')
+        } catch (error) {
+          console.error('加载组件失败:', error)
+          document.body.classList.add('loaded')
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../../js/guess-number.js"></script>
+  </body>
+</html>
