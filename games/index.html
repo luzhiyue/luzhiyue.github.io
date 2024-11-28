@@ -6,6 +6,7 @@
     <title>小游戏集合</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/games.css" />
+    <link rel="stylesheet" href="/css/back-to-top.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -88,6 +89,20 @@
         </div>
       </div>
     </section>
+
+    <!-- 在 body 末尾添加组件和脚本 -->
+    <div id="back-to-top-container"></div>
+    <script src="/js/back-to-top.js"></script>
+    <script>
+      // 加载回到顶部组件
+      fetch('/components/back-to-top.html')
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById('back-to-top-container').innerHTML = data
+          new BackToTop()
+        })
+        .catch((error) => console.error('加载回到顶部组件失败:', error))
+    </script>
 
     <script src="../js/games/search.js"></script>
   </body>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>工具集合</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="/css/back-to-top.css" />
+
     <style>
       /* 修改搜索框位置和布局 */
       .section-header {
@@ -228,6 +230,10 @@
             <h2>字符串处理工具</h2>
             <p>支持多种字符串格式转换，包括驼峰、蛇形等命名转换</p>
           </a>
+          <a href="rsa-generator.html" class="tool-card">
+            <h2>RSA密钥对生成器</h2>
+            <p>生成RSA公钥私钥对，支持多种密钥长度和格式</p>
+          </a>
         </div>
       </div>
     </section>
@@ -260,5 +266,17 @@
         }
       })
     })
+  </script>
+  <div id="back-to-top-container"></div>
+  <script src="/js/back-to-top.js"></script>
+  <script>
+    // 加载回到顶部组件
+    fetch('/components/back-to-top.html')
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById('back-to-top-container').innerHTML = data
+        new BackToTop()
+      })
+      .catch((error) => console.error('加载回到顶部组件失败:', error))
   </script>
 </html>
