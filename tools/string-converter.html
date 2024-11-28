@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>字符串处理工具</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .string-tool {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .input-area {
+        margin-bottom: 20px;
+      }
+
+      .input-area textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        resize: vertical;
+      }
+
+      .conversion-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .result-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .result-box h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copy-btn {
+        padding: 5px 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .copy-btn:hover {
+        background: #0056b3;
+      }
+
+      .result-content {
+        word-break: break-all;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <section class="tools-section">
+      <div class="container">
+        <h1 class="tool-title">字符串处理工具</h1>
+
+        <div class="string-tool">
+          <div class="input-area">
+            <textarea id="inputString" placeholder="请输入要转换的文本..."></textarea>
+          </div>
+
+          <div id="results">
+            <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                const resultsDiv = document.getElementById('results')
+                Object.entries(converterNames).forEach(([key, name]) => {
+                  const resultBox = document.createElement('div')
+                  resultBox.className = 'result-box'
+                  resultBox.innerHTML = `
+                    <h3>
+                      ${name}
+                      <button class="copy-btn" onclick="copyText('', this)">复制</button>
+                    </h3>
+                    <div class="result-content"></div>
+                  `
+                  resultsDiv.appendChild(resultBox)
+                })
+              })
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // 加载组件
+      async function loadComponents() {
+        try {
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
+
+      // 字符串转换函数
+      const stringConverters = {
+        sentence: (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase(),
+        lower: (str) => str.toLowerCase(),
+        upper: (str) => str.toUpperCase(),
+        title: (str) =>
+          str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()),
+        camel: (str) =>
+          str
+            .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+            .replace(/^[A-Z]/, (c) => c.toLowerCase()),
+        snake: (str) =>
+          str
+            .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+            .replace(/^_/, '')
+            .replace(/\s+/g, '_')
+            .toLowerCase(),
+        constant: (str) =>
+          str
+            .replace(/[A-Z]/g, (letter) => `_${letter}`)
+            .toUpperCase()
+            .replace(/^_/, '')
+            .replace(/\s+/g, '_'),
+        kebab: (str) =>
+          str
+            .replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+            .replace(/^-/, '')
+            .replace(/\s+/g, '-')
+            .toLowerCase(),
+        pascal: (str) =>
+          str
+            .replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
+            .replace(/\s+/g, ''),
+        alternating: (str) =>
+          [...str].map((char, i) => (i % 2 ? char.toLowerCase() : char.toUpperCase())).join(''),
+        inverseAlternating: (str) =>
+          [...str].map((char, i) => (i % 2 ? char.toUpperCase() : char.toLowerCase())).join(''),
+      }
+
+      const converterNames = {
+        sentence: '句子首字母大写',
+        lower: '小写转换',
+        upper: '大写转换',
+        title: '单词首字母大写',
+        camel: '驼峰命名法',
+        snake: '蛇形命名',
+        constant: '常量大写',
+        kebab: '短横线命名',
+        pascal: '帕斯卡命名',
+        alternating: '交替大小写',
+        inverseAlternating: '反向交替大小写',
+      }
+
+      function updateResults(input) {
+        const resultsDiv = document.getElementById('results')
+        resultsDiv.innerHTML = ''
+
+        Object.entries(stringConverters).forEach(([key, converter]) => {
+          const result = converter(input)
+          const resultBox = document.createElement('div')
+          resultBox.className = 'result-box'
+          resultBox.innerHTML = `
+                    <h3>
+                        ${converterNames[key]}
+                        <button class="copy-btn" onclick="copyText('${result}', this)">复制</button>
+                    </h3>
+                    <div class="result-content">${result}</div>
+                `
+          resultsDiv.appendChild(resultBox)
+        })
+      }
+
+      function copyText(text, button) {
+        navigator.clipboard.writeText(text).then(() => {
+          const originalText = button.textContent
+          button.textContent = '已复制！'
+          setTimeout(() => {
+            button.textContent = originalText
+          }, 1500)
+        })
+      }
+
+      document.getElementById('inputString').addEventListener('input', (e) => {
+        updateResults(e.target.value)
+      })
+    </script>
+  </body>
+</html>
