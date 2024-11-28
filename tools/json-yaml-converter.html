@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON/YAML转换工具</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/json-yaml-converter.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <section class="tools-section">
+      <div class="container">
+        <h1 class="tool-title">JSON/YAML转换工具</h1>
+
+        <div class="converter-tool">
+          <!-- 输入输出区域 -->
+          <div class="editor-container">
+            <div class="input-panel">
+              <div class="panel-header">
+                <h3>输入</h3>
+                <select id="inputFormat">
+                  <option value="json">JSON</option>
+                  <option value="yaml">YAML</option>
+                </select>
+              </div>
+              <textarea
+                id="inputText"
+                class="code-editor"
+                placeholder="请输入JSON或YAML格式的数据..."
+              ></textarea>
+            </div>
+
+            <div class="controls">
+              <button id="convertBtn" class="tool-btn primary">转换 ➜</button>
+              <button id="swapBtn" class="tool-btn">交换 ⇅</button>
+              <button id="clearBtn" class="tool-btn danger">清空</button>
+              <button id="formatBtn" class="tool-btn">格式化</button>
+              <button id="copyBtn" class="tool-btn">复制</button>
+            </div>
+
+            <div class="output-panel">
+              <div class="panel-header">
+                <h3>输出</h3>
+                <select id="outputFormat">
+                  <option value="yaml">YAML</option>
+                  <option value="json">JSON</option>
+                </select>
+              </div>
+              <textarea
+                id="outputText"
+                class="code-editor"
+                placeholder="转换结果将显示在这里..."
+                readonly
+              ></textarea>
+            </div>
+          </div>
+
+          <div id="errorMessage" class="error-message"></div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script>
+      async function loadComponents() {
+        try {
+          const headerResponse = await fetch('components/header.html')
+          const headerData = await headerResponse.text()
+          document.getElementById('header-container').innerHTML = headerData
+
+          const backButtonResponse = await fetch('components/back-button.html')
+          const backButtonData = await backButtonResponse.text()
+          document.getElementById('back-button-container').innerHTML = backButtonData
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      loadComponents()
+    </script>
+    <script src="../js/json-yaml-converter.js"></script>
+  </body>
+</html>
