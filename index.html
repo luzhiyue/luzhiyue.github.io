@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>首页</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/calendar.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css"
@@ -31,6 +32,47 @@
         </ul>
       </div>
     </nav>
+
+    <!-- 添加日历卡片 -->
+    <div class="calendar-container">
+      <div class="calendar-card">
+        <div class="calendar-header">
+          <div class="calendar-controls">
+            <div class="year-picker">
+              <button class="prev-year">◀</button>
+              <input type="number" class="year-input" />
+              <button class="next-year">▶</button>
+            </div>
+            <div class="month-picker">
+              <select class="month-select">
+                <option value="0">1月</option>
+                <option value="1">2月</option>
+                <option value="2">3月</option>
+                <option value="3">4月</option>
+                <option value="4">5月</option>
+                <option value="5">6月</option>
+                <option value="6">7月</option>
+                <option value="7">8月</option>
+                <option value="8">9月</option>
+                <option value="9">10月</option>
+                <option value="10">11月</option>
+                <option value="11">12月</option>
+              </select>
+            </div>
+            <div class="controls-right">
+              <button class="today-btn">今天</button>
+            </div>
+          </div>
+        </div>
+        <div class="calendar-body">
+          <div class="calendar-weekdays">
+            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div
+            ><div>六</div>
+          </div>
+          <div class="calendar-dates"></div>
+        </div>
+      </div>
+    </div>
 
     <div class="weather-container">
       <div class="weather-card">
@@ -100,5 +142,6 @@
     <script src="js/clock.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/device-info.js"></script>
+    <script src="js/calendar.js"></script>
   </body>
 </html>
