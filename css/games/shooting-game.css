@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+canvas {
+  border: 1px solid #fff;
+}
+
+.game-info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+}

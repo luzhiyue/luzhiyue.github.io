@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 骰子1 -->
+    <rect x="20" y="60" width="80" height="80" rx="10" fill="#FFFFFF" stroke="#4A90E2" stroke-width="4"/>
+    <circle cx="60" cy="100" r="8" fill="#4A90E2"/>
+    
+    <!-- 骰子2 -->
+    <rect x="100" y="40" width="80" height="80" rx="10" fill="#FFFFFF" stroke="#4A90E2" stroke-width="4"/>
+    <circle cx="125" cy="65" r="8" fill="#4A90E2"/>
+    <circle cx="155" cy="95" r="8" fill="#4A90E2"/>
+    
+    <!-- 骰子3 -->
+    <rect x="60" y="80" width="80" height="80" rx="10" fill="#FFFFFF" stroke="#4A90E2" stroke-width="4"/>
+    <circle cx="85" cy="105" r="8" fill="#4A90E2"/>
+    <circle cx="100" cy="120" r="8" fill="#4A90E2"/>
+    <circle cx="115" cy="135" r="8" fill="#4A90E2"/>
+</svg> 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三筛子游戏</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/games/dice.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <div class="dice-area">
+        <div class="dice-box">
+          <div class="dice" id="dice1">
+            <div class="face front">
+              <span class="dot center"></span>
+            </div>
+            <div class="face back">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+              <span class="dot dot-6"></span>
+            </div>
+            <div class="face right">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+            </div>
+            <div class="face left">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+            </div>
+            <div class="face top">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+            </div>
+            <div class="face bottom">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+            </div>
+          </div>
+        </div>
+        <div class="dice-box">
+          <div class="dice" id="dice2">
+            <div class="face front">
+              <span class="dot center"></span>
+            </div>
+            <div class="face back">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+              <span class="dot dot-6"></span>
+            </div>
+            <div class="face right">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+            </div>
+            <div class="face left">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+            </div>
+            <div class="face top">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+            </div>
+            <div class="face bottom">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+            </div>
+          </div>
+        </div>
+        <div class="dice-box">
+          <div class="dice" id="dice3">
+            <div class="face front">
+              <span class="dot center"></span>
+            </div>
+            <div class="face back">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+              <span class="dot dot-6"></span>
+            </div>
+            <div class="face right">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+            </div>
+            <div class="face left">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+            </div>
+            <div class="face top">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+            </div>
+            <div class="face bottom">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="roll-btn">摇骰子</button>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../js/games/dice.js"></script>
+  </body>
+</html>

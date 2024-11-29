@@ -1,0 +1,316 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 20px;
+  color: white;
+}
+
+.dice-area {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 50px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.dice-box {
+  perspective: 1200px;
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.dice {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 15px;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dot {
+  background: #333;
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+  width: 14px;
+  height: 14px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 定义每个面的位置 */
+.front {
+  transform: translateZ(60px);
+}
+.back {
+  transform: rotateY(180deg) translateZ(60px);
+}
+.right {
+  transform: rotateY(90deg) translateZ(60px);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(60px);
+}
+.top {
+  transform: rotateX(90deg) translateZ(60px);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(60px);
+}
+
+/* 定义点的位置 */
+.front .dot {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.back .dot:nth-child(1) {
+  grid-area: 1 / 1;
+}
+.back .dot:nth-child(2) {
+  grid-area: 1 / 3;
+}
+.back .dot:nth-child(3) {
+  grid-area: 2 / 2;
+}
+.back .dot:nth-child(4) {
+  grid-area: 3 / 1;
+}
+.back .dot:nth-child(5) {
+  grid-area: 3 / 2;
+}
+.back .dot:nth-child(6) {
+  grid-area: 3 / 3;
+}
+
+.right .dot:nth-child(1) {
+  grid-area: 1 / 3;
+}
+.right .dot:nth-child(2) {
+  grid-area: 2 / 2;
+}
+.right .dot:nth-child(3) {
+  grid-area: 3 / 1;
+}
+
+.left .dot:nth-child(1) {
+  grid-area: 1 / 1;
+}
+.left .dot:nth-child(2) {
+  grid-area: 1 / 3;
+}
+.left .dot:nth-child(3) {
+  grid-area: 3 / 1;
+}
+.left .dot:nth-child(4) {
+  grid-area: 3 / 3;
+}
+
+.top .dot:nth-child(1) {
+  grid-area: 1 / 1;
+}
+.top .dot:nth-child(2) {
+  grid-area: 1 / 3;
+}
+.top .dot:nth-child(3) {
+  grid-area: 2 / 2;
+}
+.top .dot:nth-child(4) {
+  grid-area: 3 / 1;
+}
+.top .dot:nth-child(5) {
+  grid-area: 3 / 3;
+}
+
+.bottom .dot:nth-child(1) {
+  grid-area: 1 / 1;
+}
+.bottom .dot:nth-child(2) {
+  grid-area: 3 / 3;
+}
+
+.controls {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#roll-btn {
+  padding: 15px 40px;
+  font-size: 20px;
+  background: linear-gradient(45deg, #4caf50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+#roll-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+#roll-btn:disabled {
+  background: linear-gradient(45deg, #cccccc, #bbbbbb);
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.result {
+  margin-top: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.result-animation {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.result-number {
+  color: #4caf50;
+}
+
+.result-equals {
+  margin: 0 10px;
+  color: #fff;
+}
+
+.result-total {
+  color: #ffd700;
+  font-size: 32px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 添加骰子投影效果 */
+.dice-box::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  bottom: -30px;
+  left: 0;
+  filter: blur(10px);
+  transform-origin: center;
+  animation: shadowPulse 1s infinite alternate ease-in-out;
+}
+
+@keyframes shadowPulse {
+  from {
+    transform: scaleX(1);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleX(1.2);
+    opacity: 0.1;
+  }
+}
+
+/* 移除之前的独特初始位置 */
+#dice1,
+#dice2,
+#dice3 {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* 修改动画，保持最后状态 */
+@keyframes shake1 {
+  0% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+  25% {
+    transform: rotate3d(1, 2, 1, 20deg);
+  }
+  50% {
+    transform: rotate3d(2, 1, 1, -20deg);
+  }
+  75% {
+    transform: rotate3d(1, 1, 2, 20deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+}
+
+@keyframes shake2 {
+  0% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+  25% {
+    transform: rotate3d(2, 1, 1, -20deg);
+  }
+  50% {
+    transform: rotate3d(1, 2, 1, 20deg);
+  }
+  75% {
+    transform: rotate3d(1, 1, 2, -20deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+}
+
+@keyframes shake3 {
+  0% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+  25% {
+    transform: rotate3d(1, 1, 2, 20deg);
+  }
+  50% {
+    transform: rotate3d(2, 1, 1, -20deg);
+  }
+  75% {
+    transform: rotate3d(1, 2, 1, 20deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+}
+
+.shaking#dice1 {
+  animation: shake1 0.5s infinite;
+}
+.shaking#dice2 {
+  animation: shake2 0.5s infinite;
+}
+.shaking#dice3 {
+  animation: shake3 0.5s infinite;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>打飞机游戏</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/games/shooting-game.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <div id="back-button-container"></div>
+
+    <div class="game-container">
+      <canvas id="shooting-canvas"></canvas>
+      <div class="game-info">
+        <div class="score">分数: <span id="score">0</span></div>
+        <button id="start-btn">开始游戏</button>
+      </div>
+    </div>
+
+    <script>
+      async function loadComponents() {
+        try {
+          await Promise.all([
+            fetch('components/header.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('header-container').innerHTML = data
+              }),
+            fetch('components/back-button.html')
+              .then((response) => response.text())
+              .then((data) => {
+                document.getElementById('back-button-container').innerHTML = data
+              }),
+          ])
+        } catch (error) {
+          console.error('加载组件失败:', error)
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadComponents)
+    </script>
+    <script src="../js/games/shooting-game.js"></script>
+  </body>
+</html>
