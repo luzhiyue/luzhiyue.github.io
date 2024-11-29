@@ -1,0 +1,60 @@
+.game-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.game-info {
+  flex: 1;
+  max-width: 200px;
+}
+
+#minesweeper-grid {
+  display: grid;
+  gap: 1px;
+  background-color: #ccc;
+  padding: 1px;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #eee;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cell.revealed {
+  background-color: #ddd;
+}
+
+.cell.mine {
+  background-color: #ff0000;
+}
+
+.cell.flagged {
+  background-color: #yellow;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+.controls button,
+.controls select {
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.mines-count,
+.timer {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
