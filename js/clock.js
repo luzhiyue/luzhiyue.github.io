@@ -15,13 +15,21 @@ function updateClock() {
   const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
   const weekDay = weekDays[now.getDay()]
 
-  // 更新显示
-  timeElement.textContent = `${hours}:${minutes}:${seconds}`
-  dateElement.textContent = `${year}年${month}月${day}日 ${weekDay}`
+  // 添加判断，确保元素存在
+  if (timeElement && dateElement) {
+    timeElement.textContent = `${hours}:${minutes}:${seconds}`
+    dateElement.textContent = `${year}年${month}月${day}日 ${weekDay}`
+  }
 }
 
-// 初始化时钟
-document.addEventListener('DOMContentLoaded', () => {
-  updateClock() // 立即更新一次
-  setInterval(updateClock, 1000) // 每秒更新
-})
+// 修改初始化方式
+function initClock() {
+  // 立即更新一次
+  updateClock()
+  // 设置定时器
+  setInterval(updateClock, 1000)
+}
+
+// 移除这里的直接调用
+// document.addEventListener('DOMContentLoaded', updateClock);
+// setInterval(updateClock, 1000);
