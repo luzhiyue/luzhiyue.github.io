@@ -147,10 +147,10 @@
     <script src="js/calendar.js"></script>
 
     <div id="back-to-top-container"></div>
-    <script src="/js/back-to-top.js"></script>
+    <script src="js/back-to-top.js"></script>
     <script>
       // 加载回到顶部组件
-      fetch('/components/back-to-top.html')
+      fetch('components/back-to-top.html')
         .then((response) => response.text())
         .then((data) => {
           document.getElementById('back-to-top-container').innerHTML = data

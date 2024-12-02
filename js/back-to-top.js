@@ -32,8 +32,3 @@ class BackToTop {
     })
   }
 }
-
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
-  new BackToTop()
-})
