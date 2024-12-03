@@ -1,0 +1,31 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">字符串处理工具</h1>
+
+    <div class="string-tool">
+      <div class="input-area">
+        <textarea id="inputString" placeholder="请输入要转换的文本..."></textarea>
+      </div>
+
+      <div id="results">
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const resultsDiv = document.getElementById('results')
+            Object.entries(converterNames).forEach(([key, name]) => {
+              const resultBox = document.createElement('div')
+              resultBox.className = 'result-box'
+              resultBox.innerHTML = `
+                    <h3>
+                      ${name}
+                      <button class="copy-btn" onclick="copyText('', this)">复制</button>
+                    </h3>
+                    <div class="result-content"></div>
+                  `
+              resultsDiv.appendChild(resultBox)
+            })
+          })
+        </script>
+      </div>
+    </div>
+  </div>
+</section>

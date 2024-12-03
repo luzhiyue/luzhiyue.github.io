@@ -1,0 +1,60 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">文本比较工具</h1>
+
+    <div class="text-diff-tool">
+      <!-- 文本输入区域 -->
+      <div class="input-areas">
+        <div class="text-area-container">
+          <h3>原始文本</h3>
+          <textarea id="originalText" placeholder="请输入原始文本..." class="text-input"></textarea>
+        </div>
+        <div class="text-area-container">
+          <h3>比较文本</h3>
+          <textarea
+            id="compareText"
+            placeholder="请输入需要比较的文本..."
+            class="text-input"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- 控制面板 -->
+      <div class="control-panel">
+        <div class="options">
+          <label>
+            <input type="checkbox" id="ignoreCase" checked />
+            忽略大小写
+          </label>
+          <label>
+            <input type="checkbox" id="ignoreSpace" checked />
+            忽略空格
+          </label>
+          <label>
+            <input type="checkbox" id="ignoreNewlines" />
+            忽略换行
+          </label>
+        </div>
+        <div class="button-group">
+          <button class="tool-btn" id="compareBtn">比较差异</button>
+          <button class="tool-btn" id="clearBtn">清空</button>
+        </div>
+      </div>
+
+      <!-- 比较结果区域 -->
+      <div class="diff-result">
+        <h3>比较结果</h3>
+        <div class="diff-container">
+          <div class="diff-column">
+            <div class="diff-header">原始文本</div>
+            <div id="diffOutput1" class="diff-output"></div>
+          </div>
+          <div class="diff-column">
+            <div class="diff-header">比较文本</div>
+            <div id="diffOutput2" class="diff-output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

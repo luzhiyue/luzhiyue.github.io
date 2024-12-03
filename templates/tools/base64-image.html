@@ -1,0 +1,56 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">Base64图像编码/解码工具</h1>
+
+    <div class="base64-tool">
+      <!-- 转换模式选择 -->
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="encode">图片转Base64</button>
+        <button class="mode-btn" data-mode="decode">Base64转图片</button>
+      </div>
+
+      <!-- 编码区域 -->
+      <div class="encode-area" id="encodeArea">
+        <div class="upload-area" id="dropZone">
+          <input type="file" id="fileInput" accept="image/*" hidden />
+          <div class="upload-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <p>点击或拖拽图片到此处</p>
+            <p class="supported-formats"> 支持的格式：PNG, JPG, BMP, GIF, ICO, WebP, SVG </p>
+          </div>
+        </div>
+        <div class="preview-container" style="display: none">
+          <img id="previewImage" src="" alt="预览图" />
+          <div class="image-info">
+            <p>原始尺寸：<span id="originalSize">0 x 0</span></p>
+            <p>文件大小：<span id="fileSize">0 KB</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 解码区域 -->
+      <div class="decode-area" id="decodeArea" style="display: none">
+        <textarea id="base64Input" placeholder="请输入Base64编码的图片数据..."></textarea>
+      </div>
+
+      <!-- 结果区域 -->
+      <div class="result-area">
+        <div class="result-header">
+          <h3>转换结果</h3>
+          <button class="copy-btn" id="copyBtn">复制结果</button>
+        </div>
+        <div class="result-content">
+          <textarea id="resultOutput" readonly></textarea>
+          <div class="result-image" id="resultImage" style="display: none">
+            <img id="decodedImage" src="" alt="解码后的图片" />
+            <button class="download-btn" id="downloadBtn">下载图片</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

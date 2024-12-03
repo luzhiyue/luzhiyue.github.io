@@ -1,0 +1,60 @@
+.string-tool {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-area {
+  margin-bottom: 20px;
+}
+
+.input-area textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.conversion-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.result-box {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.result-box h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy-btn {
+  padding: 5px 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.copy-btn:hover {
+  background: #0056b3;
+}
+
+.result-content {
+  word-break: break-all;
+  font-family: monospace;
+}

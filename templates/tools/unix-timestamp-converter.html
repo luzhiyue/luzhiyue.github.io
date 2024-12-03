@@ -1,0 +1,44 @@
+<div class="tool-container">
+  <h1>Unix 时间戳转换工具</h1>
+  <div class="controls">
+    <label for="timezone">时区</label>
+    <select id="timezone" style="width: 150px">
+      <option value="UTC">UTC</option>
+      <option value="GMT">GMT</option>
+      <option value="CST">CST</option>
+    </select>
+  </div>
+  <div class="current-timestamp-box">
+    <label>当前时间戳</label>
+    <input type="text" id="currentTimestamp" readonly />
+    <button id="copyCurrentBtn">复制</button>
+  </div>
+
+  <div class="timestamp-box">
+    <label for="timestamp">时间戳</label>
+    <input type="number" id="timestamp" placeholder="输入 Unix 时间戳" />
+    <button id="convertBtn">转换</button>
+  </div>
+  <div
+    class="date-time-box"
+    style="display: flex; justify-content: center; align-items: center; height: 100%"
+  >
+    <div
+      class="date-time-inputs"
+      style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center"
+    >
+      <label for="year" style="margin-right: 5px">年:</label>
+      <input type="number" id="year" placeholder="年" style="width: 60px" />
+      <label for="month" style="margin-right: 5px">月:</label>
+      <input type="number" id="month" placeholder="月" style="width: 60px" />
+      <label for="day" style="margin-right: 5px">日:</label>
+      <input type="number" id="day" placeholder="日" style="width: 60px" />
+      <label for="hour" style="margin-right: 5px">时:</label>
+      <input type="number" id="hour" placeholder="时" style="width: 60px" />
+      <label for="minute" style="margin-right: 5px">分:</label>
+      <input type="number" id="minute" placeholder="分" style="width: 60px" />
+      <label for="second" style="margin-right: 5px">秒:</label>
+      <input type="number" id="second" placeholder="秒" style="width: 60px" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">图片处理工具</h1>
+
+    <div class="image-tool">
+      <!-- 图片上传区域 -->
+      <div class="upload-area" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <div class="upload-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          <p>点击或拖拽图片到此处</p>
+        </div>
+      </div>
+
+      <!-- 图片预览和处理区域 -->
+      <div class="image-workspace" style="display: none">
+        <div class="preview-container">
+          <img id="previewImage" src="" alt="预览图" />
+          <div class="image-info">
+            <p>原始尺寸：<span id="originalSize">0 x 0</span></p>
+            <p>文件大小：<span id="fileSize">0 KB</span></p>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <!-- 基本调整 -->
+          <div class="control-group">
+            <h3>基本调整</h3>
+            <div class="control-item">
+              <label>宽度：</label>
+              <input type="number" id="width" min="1" />
+            </div>
+            <div class="control-item">
+              <label>高度：</label>
+              <input type="number" id="height" min="1" />
+            </div>
+            <div class="control-item">
+              <label>保持比例：</label>
+              <input type="checkbox" id="keepRatio" checked />
+            </div>
+          </div>
+
+          <!-- 图片效果 -->
+          <div class="control-group">
+            <h3>图片效果</h3>
+            <div class="control-item">
+              <label>亮度：</label>
+              <input type="range" id="brightness" min="0" max="200" value="100" />
+            </div>
+            <div class="control-item">
+              <label>对比度：</label>
+              <input type="range" id="contrast" min="0" max="200" value="100" />
+            </div>
+            <div class="control-item">
+              <label>饱和度：</label>
+              <input type="range" id="saturation" min="0" max="200" value="100" />
+            </div>
+          </div>
+
+          <!-- 输出选项 -->
+          <div class="control-group">
+            <h3>输出选项</h3>
+            <div class="control-item">
+              <label>格式：</label>
+              <select id="format">
+                <option value="jpeg">JPEG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label>质量：</label>
+              <input type="range" id="quality" min="0" max="100" value="90" />
+              <span id="qualityValue">90%</span>
+            </div>
+          </div>
+
+          <!-- 裁剪工具 -->
+          <div class="control-group">
+            <h3>裁剪工具</h3>
+            <div class="crop-controls">
+              <button class="tool-btn" id="startCropBtn">开始裁剪</button>
+              <button class="tool-btn" id="applyCropBtn" style="display: none">确认裁剪</button>
+              <button class="tool-btn" id="cancelCropBtn" style="display: none">取消裁剪</button>
+            </div>
+            <div class="crop-options" style="display: none">
+              <div class="control-item">
+                <label>比例：</label>
+                <select id="aspectRatio">
+                  <option value="NaN">自由</option>
+                  <option value="1">1:1</option>
+                  <option value="1.7778">16:9</option>
+                  <option value="0.5625">9:16</option>
+                  <option value="1.3333">4:3</option>
+                  <option value="0.75">3:4</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 操作按钮 -->
+          <div class="button-group">
+            <button class="tool-btn" onclick="resetImage()">重置</button>
+            <button class="tool-btn success" onclick="downloadImage()">下载</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

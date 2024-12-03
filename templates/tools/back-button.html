@@ -1,0 +1,65 @@
+<a href="#/tools" class="back-button" title="返回工具集合">
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M19 12H5" />
+    <path d="M12 19l-7-7 7-7" />
+  </svg>
+</a>
+
+<style>
+  .back-button {
+    position: fixed;
+    top: 100px;
+    left: 40px;
+    width: 60px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid #eaeaea;
+  }
+
+  .back-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: #333;
+    transition: all 0.3s ease;
+  }
+
+  .back-button:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+    border-color: #007bff;
+  }
+
+  .back-button:hover svg {
+    stroke: #007bff;
+  }
+
+  @media (max-width: 768px) {
+    .back-button {
+      top: 80px;
+      left: 20px;
+      width: 50px;
+      height: 35px;
+    }
+
+    .back-button svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,106 @@
+/* 修改工具页面的搜索框样式，添加更具体的选择器 */
+.tools-section .section-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.tools-section .section-header h1 {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* 重写搜索框样式，避免受游戏页面影响 */
+.tools-section .search-container {
+  position: relative;
+  width: 200px;
+  margin: 0;
+}
+
+.tools-section .search-box {
+  width: 100%;
+  padding: 8px 15px;
+  border: 2px solid #007bff;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.tools-section .search-box:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* 隐藏不匹配的卡片 */
+.tool-card.hidden {
+  display: none;
+}
+
+/* 添加工具卡片网格布局的固定样式 */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.tool-card {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 确保卡片内容不会影响卡片大小 */
+.tool-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  word-wrap: break-word;
+}
+
+.tool-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .section-header h1 {
+    position: static;
+    transform: none;
+    margin-bottom: 15px;
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .search-box,
+  .search-box:focus {
+    width: 100%;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}

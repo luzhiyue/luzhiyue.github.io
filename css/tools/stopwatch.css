@@ -1,0 +1,142 @@
+body {
+  overflow: hidden;
+}
+
+.stopwatch-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: calc(100vh - 80px);
+  padding: 40px 20px;
+  margin-top: 80px;
+  overflow: hidden;
+}
+
+.stopwatch {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  min-height: 300px;
+}
+
+.stopwatch .display {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Courier New', monospace;
+  min-height: 70px;
+}
+
+.stopwatch .time {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #2c3e50;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  display: inline-block;
+  min-width: 240px;
+  text-align: center;
+}
+
+.stopwatch .milliseconds {
+  font-size: 2rem;
+  color: #7f8c8d;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 70px;
+  text-align: left;
+}
+
+.stopwatch .controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stopwatch .btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.stopwatch .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stopwatch .btn.start {
+  background: #2ecc71;
+  color: white;
+}
+
+.stopwatch .btn.stop {
+  background: #e74c3c;
+  color: white;
+}
+
+.stopwatch .btn:not(.start):not(.stop) {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.stopwatch .btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stopwatch .laps {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.stopwatch .laps-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  color: #7f8c8d;
+}
+
+.stopwatch .lap-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.stopwatch .lap-number {
+  color: #7f8c8d;
+}
+
+.stopwatch .lap-time {
+  font-family: monospace;
+  color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+  .stopwatch .time {
+    font-size: 2.5rem;
+  }
+
+  .stopwatch .milliseconds {
+    font-size: 1.5rem;
+  }
+
+  .stopwatch .controls {
+    flex-wrap: wrap;
+  }
+
+  .stopwatch .btn {
+    min-width: 80px;
+    padding: 10px 20px;
+  }
+}

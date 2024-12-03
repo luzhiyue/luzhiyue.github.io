@@ -1,0 +1,83 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">Base64文本编解码工具</h1>
+
+    <div class="base64-tool">
+      <!-- 文本输入输出区域 -->
+      <div class="text-workspace">
+        <div class="input-container">
+          <div class="text-header">
+            <h3>输入文本</h3>
+            <div class="text-controls">
+              <button class="tool-btn" onclick="clearInput()">清空</button>
+              <button class="tool-btn" onclick="pasteText()">粘贴</button>
+            </div>
+          </div>
+          <textarea id="inputText" placeholder="请输入要编码/解码的文本..."></textarea>
+          <div class="text-info">
+            <span>字符数：<span id="inputCount">0</span></span>
+            <span>字节数：<span id="inputBytes">0</span></span>
+          </div>
+        </div>
+
+        <div class="controls-panel">
+          <button class="direction-btn" onclick="swapTexts()">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+          </button>
+          <div class="convert-buttons">
+            <button class="tool-btn primary" onclick="encodeToBase64()">编码 ➜</button>
+            <button class="tool-btn primary" onclick="decodeFromBase64()">➜ 解码</button>
+          </div>
+        </div>
+
+        <div class="output-container">
+          <div class="text-header">
+            <h3>输出结果</h3>
+            <div class="text-controls">
+              <button class="tool-btn" onclick="clearOutput()">清空</button>
+              <button class="tool-btn" onclick="copyOutput()">复制</button>
+            </div>
+          </div>
+          <textarea id="outputText" readonly placeholder="转换结果将显示在这里..."></textarea>
+          <div class="text-info">
+            <span>字符数：<span id="outputCount">0</span></span>
+            <span>字节数：<span id="outputBytes">0</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 选项面板 -->
+      <div class="options-panel">
+        <div class="option-group">
+          <h3>编码选项</h3>
+          <div class="option-item">
+            <label>
+              <input type="checkbox" id="urlSafe" />
+              使用URL安全字符(将+和/替换为-和_)
+            </label>
+          </div>
+          <div class="option-item">
+            <label>
+              <input type="checkbox" id="nopadding" />
+              去除末尾填充的等号
+            </label>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <h3>文本编码</h3>
+          <div class="option-item">
+            <select id="textEncoding">
+              <option value="UTF-8">UTF-8</option>
+              <option value="UTF-16">UTF-16</option>
+              <option value="ASCII">ASCII</option>
+              <option value="ISO-8859-1">ISO-8859-1</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

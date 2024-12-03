@@ -1,0 +1,47 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">颜色选择器</h1>
+    <div class="color-tools">
+      <!-- 颜色选择器 -->
+      <div class="tool-box">
+        <h2>颜色选择</h2>
+        <div class="input-group">
+          <input type="color" id="color-picker" value="#007bff" />
+          <input
+            type="text"
+            id="color-input"
+            placeholder="输入颜色值 (如: #FF0000 或 rgb(255,0,0))"
+          />
+        </div>
+        <div class="color-preview-container">
+          <div id="color-preview" class="color-preview"></div>
+          <div id="color-values" class="color-values"></div>
+        </div>
+      </div>
+
+      <!-- 颜色调整 -->
+      <div class="tool-box">
+        <h2>颜色调整</h2>
+        <div class="slider-group">
+          <label>色相 (H)</label>
+          <input type="range" id="hue-slider" min="0" max="360" value="0" />
+          <label>饱和度 (S)</label>
+          <input type="range" id="saturation-slider" min="0" max="100" value="100" />
+          <label>亮度 (L)</label>
+          <input type="range" id="lightness-slider" min="0" max="100" value="50" />
+        </div>
+      </div>
+
+      <!-- 颜色方案 -->
+      <div class="tool-box">
+        <h2>颜色方案</h2>
+        <div class="scheme-buttons">
+          <button class="tool-btn" data-scheme="complementary">互补色</button>
+          <button class="tool-btn" data-scheme="triadic">三色组</button>
+          <button class="tool-btn" data-scheme="analogous">类似色</button>
+        </div>
+        <div id="color-scheme" class="color-scheme"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">UUID生成器</h1>
+
+    <div class="uuid-tool">
+      <!-- 控制面板 -->
+      <div class="control-panel">
+        <div class="control-group">
+          <div class="control-item">
+            <label>UUID版本：</label>
+            <select id="uuidVersion">
+              <option value="4">V4 (随机)</option>
+              <option value="1">V1 (时间戳)</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>大小写：</label>
+            <select id="uuidCase">
+              <option value="lower">小写</option>
+              <option value="upper">大写</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>生成数量：</label>
+            <input type="number" id="uuidCount" min="1" max="100" value="1" />
+          </div>
+          <div class="control-item">
+            <label>分隔符：</label>
+            <select id="uuidSeparator">
+              <option value="-">连字符 (-)</option>
+              <option value="">无分隔符</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 按钮组 -->
+        <div class="button-group">
+          <button class="tool-btn primary" id="generateBtn">生成</button>
+          <button class="tool-btn" id="copyBtn">复制</button>
+          <button class="tool-btn danger" id="clearBtn">清空</button>
+        </div>
+      </div>
+
+      <!-- 结果显示区域 -->
+      <div class="result-panel">
+        <textarea id="uuidResult" readonly placeholder="生成的UUID将显示在这里..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>

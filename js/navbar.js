@@ -4,7 +4,7 @@ class Navbar {
   }
 
   setActiveLink() {
-    const currentPath = window.location.pathname
+    const currentPath = window.location.hash.slice(1) || '/'
     const links = document.querySelectorAll('.nav-link')
 
     links.forEach((link) => {

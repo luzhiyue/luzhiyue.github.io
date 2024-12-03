@@ -1,0 +1,31 @@
+<div class="qrcode-container">
+  <div class="qrcode-card">
+    <div class="input-box">
+      <input type="text" placeholder="输入文本或URL..." id="textInput" />
+      <button id="generateBtn">生成二维码</button>
+    </div>
+
+    <div class="qrcode-display">
+      <div id="qrcode"></div>
+    </div>
+
+    <div class="options">
+      <div class="option-group">
+        <label>尺寸:</label>
+        <select id="sizeSelect">
+          <option value="128">128x128</option>
+          <option value="256" selected>256x256</option>
+          <option value="512">512x512</option>
+        </select>
+      </div>
+      <div class="option-group">
+        <label>颜色:</label>
+        <input type="color" id="colorPicker" value="#000000" />
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button id="downloadBtn">下载二维码</button>
+    </div>
+  </div>
+</div>

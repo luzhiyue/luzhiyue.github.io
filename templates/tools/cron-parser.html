@@ -1,0 +1,32 @@
+<section class="tools-section">
+  <div class="container">
+    <h1 class="tool-title">Cron表达式解析工具</h1>
+    <div class="cron-tool">
+      <div class="button-group">
+        <button class="parse-btn primary">解析</button>
+        <button class="example-btn secondary">示例</button>
+        <button class="clear-btn danger">清空</button>
+      </div>
+      <div class="input-output">
+        <div class="input-container">
+          <h3>输入Cron表达式</h3>
+          <input
+            type="text"
+            id="input-cron"
+            class="cron-input"
+            placeholder="请输入Cron表达式，支持5位（分 时 日 月 周）或6位（秒 分 时 日 月 周）格式"
+          />
+        </div>
+        <div class="output-container">
+          <h3>解析结果</h3>
+          <div id="cron-description" class="cron-description"></div>
+          <div class="next-runs">
+            <h4>接下来10次运行时间:</h4>
+            <ul id="next-run-times"></ul>
+          </div>
+        </div>
+      </div>
+      <div id="error-message" class="error-message"></div>
+    </div>
+  </div>
+</section>
