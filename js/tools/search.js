@@ -1,7 +1,7 @@
-class GameSearch {
+class ToolSearch {
   constructor() {
-    this.searchInput = document.getElementById('game-search')
-    this.gameCards = document.querySelectorAll('.game-card')
+    this.searchInput = document.getElementById('searchTools')
+    this.toolCards = document.querySelectorAll('.tool-card')
 
     // 创建并添加清空按钮
     this.createClearButton()
@@ -19,16 +19,16 @@ class GameSearch {
     clearButton.innerHTML = '×'
     clearButton.style.cssText = `
       position: absolute;
-      right: 35px;
-      top: 50%;
+      right: 5%;
+      top: 25%;
       transform: translateY(-50%);
       background: none;
       border: none;
       color: #666;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       display: none;
       line-height: 1;
       border-radius: 50%;
@@ -36,8 +36,6 @@ class GameSearch {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
-      margin: 0;
     `
 
     // 添加悬停效果
@@ -56,7 +54,7 @@ class GameSearch {
     searchContainer.appendChild(clearButton)
 
     // 调整搜索框的内边距，为清空按钮留出空间
-    this.searchInput.style.paddingRight = '45px'
+    this.searchInput.style.paddingRight = '40px'
 
     this.clearButton = clearButton
   }
@@ -80,32 +78,47 @@ class GameSearch {
   }
 
   handleSearch(e) {
-    const searchTerm = e.target.value.toLowerCase().trim()
+    const searchText = e.target.value.toLowerCase()
 
-    this.gameCards.forEach((card) => {
-      const gameName = card.getAttribute('data-game-name').toLowerCase()
-      const gameDescription = card.querySelector('p').textContent.toLowerCase()
+    this.toolCards.forEach((card) => {
+      const title = card.querySelector('h2').textContent.toLowerCase()
+      const description = card.querySelector('p').textContent.toLowerCase()
 
-      if (gameName.includes(searchTerm) || gameDescription.includes(searchTerm)) {
+      if (title.includes(searchText) || description.includes(searchText)) {
         card.classList.remove('hidden')
       } else {
         card.classList.add('hidden')
+      }
+    })
+
+    // 处理分类标题的显示/隐藏
+    document.querySelectorAll('.tools-category').forEach((category) => {
+      const visibleCards = category.querySelectorAll('.tool-card:not(.hidden)')
+      if (visibleCards.length === 0) {
+        category.style.display = 'none'
+      } else {
+        category.style.display = 'block'
       }
     })
   }
 
   toggleClearButton() {
     // 根据搜索框是否有内容来显示/隐藏清空按钮
-    this.clearButton.style.display = this.searchInput.value ? 'flex' : 'none'
+    this.clearButton.style.display = this.searchInput.value ? 'block' : 'none'
   }
 
   clearSearch() {
     this.searchInput.value = ''
     this.toggleClearButton()
 
-    // 显示所有游戏卡片
-    this.gameCards.forEach((card) => card.classList.remove('hidden'))
+    // 显示所有工具卡片
+    this.toolCards.forEach((card) => card.classList.remove('hidden'))
+
+    // 显示所有分类
+    document.querySelectorAll('.tools-category').forEach((category) => {
+      category.style.display = 'block'
+    })
   }
 }
 
-new GameSearch()
+new ToolSearch()

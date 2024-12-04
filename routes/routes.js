@@ -17,6 +17,7 @@ const routes = {
     template: '/templates/tools.html',
     title: '工具集合',
     styles: ['/css/tools.css'],
+    scripts: ['/js/tools/search.js'],
   },
   '/games': {
     template: '/templates/games.html',
@@ -167,6 +168,65 @@ const toolRoutes = {
 Object.entries(toolRoutes).forEach(([path, config]) => {
   routes[`/tools/${path}`] = {
     template: `/templates/tools/${path}.html`,
+    title: config.title,
+    styles: config.styles,
+    scripts: config.scripts,
+  }
+})
+
+// 游戏路由配置
+const gameRoutes = {
+  tetris: {
+    title: '俄罗斯方块',
+    styles: ['/css/games/tetris.css'],
+    scripts: ['/js/games/tetris.js'],
+  },
+  snake: {
+    title: '贪吃蛇',
+    styles: ['/css/games/snake.css'],
+    scripts: ['/js/games/snake.js'],
+  },
+  2048: {
+    title: '2048',
+    styles: ['/css/games/2048.css'],
+    scripts: ['/js/games/2048.js'],
+  },
+  'guess-number': {
+    title: '猜数字',
+    styles: ['/css/games/guess-number.css'],
+    scripts: ['/js/games/guess-number.js'],
+  },
+  'tic-tac-toe': {
+    title: '井字棋',
+    styles: ['/css/games/tic-tac-toe.css'],
+    scripts: ['/js/games/tic-tac-toe.js'],
+  },
+  'memory-game': {
+    title: '记忆游戏',
+    styles: ['/css/games/memory-game.css'],
+    scripts: ['/js/games/memory-game.js'],
+  },
+  'shooting-game': {
+    title: '打飞机',
+    styles: ['/css/games/shooting-game.css'],
+    scripts: ['/js/games/shooting-game.js'],
+  },
+  dice: {
+    title: '三筛子',
+    styles: ['/css/games/dice.css'],
+    scripts: ['/js/games/dice.js'],
+  },
+  minesweeper: {
+    title: '扫雷',
+    styles: ['/css/games/minesweeper.css'],
+    scripts: ['/js/games/minesweeper.js'],
+  },
+}
+
+// 将游戏路由添加到主路由
+Object.entries(gameRoutes).forEach(([path, config]) => {
+  routes[`/games/${path}`] = {
+    template: `/templates/games/${path}.html`,
     title: config.title,
     styles: config.styles,
     scripts: config.scripts,

@@ -71,7 +71,15 @@ class Router {
 
         // 如果是工具页面，添加返回按钮
         if (path.startsWith('/tools/') && path !== '/tools') {
-          const backButton = await this.loadBackButton()
+          const backButton = await this.loadToolsBackButton()
+          if (backButton) {
+            this.contentDiv.appendChild(backButton)
+          }
+        }
+
+        // 如果是游戏页面，添加返回按钮
+        if (path.startsWith('/games/') && path !== '/games') {
+          const backButton = await this.loadGamesBackButton()
           if (backButton) {
             this.contentDiv.appendChild(backButton)
           }
@@ -185,9 +193,33 @@ class Router {
   }
 
   // 添加加载返回按钮的方法
-  async loadBackButton() {
+  async loadToolsBackButton() {
     try {
       const response = await fetch('/templates/tools/back-button.html')
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const html = await response.text()
+      const parser = new DOMParser()
+      const doc = parser.parseFromString(html, 'text/html')
+
+      // 添加 nav-link 类以支持路由
+      const backButton = doc.querySelector('.back-button')
+      if (backButton) {
+        backButton.classList.add('nav-link')
+      }
+
+      // 返回包含样式和按钮的容器
+      const container = document.createElement('div')
+      container.innerHTML = html
+      return container
+    } catch (error) {
+      return null
+    }
+  }
+  async loadGamesBackButton() {
+    try {
+      const response = await fetch('/templates/games/back-button.html')
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }

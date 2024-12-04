@@ -49,7 +49,4 @@ class GuessNumberGame {
   }
 }
 
-// 初始化游戏
-document.addEventListener('DOMContentLoaded', () => {
-  new GuessNumberGame()
-})
+new GuessNumberGame()

@@ -262,6 +262,4 @@ class Minesweeper {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  new Minesweeper()
-})
+new Minesweeper()

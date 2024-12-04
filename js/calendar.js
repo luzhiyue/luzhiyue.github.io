@@ -149,7 +149,6 @@ if (!window.calendar) {
       const today = new Date()
       this.date = today
       this.render()
-      this.updateSolarTerm()
     }
 
     // ... 其他日历相关方法

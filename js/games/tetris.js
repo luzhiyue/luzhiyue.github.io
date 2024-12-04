@@ -362,7 +362,4 @@ class Tetris {
   }
 }
 
-// 初始化游戏
-window.addEventListener('load', () => {
-  const game = new Tetris()
-})
+new Tetris()

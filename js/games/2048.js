@@ -292,7 +292,4 @@ class Game2048 {
   }
 }
 
-// 初始化游戏
-window.addEventListener('load', () => {
-  const game = new Game2048()
-})
+new Game2048()

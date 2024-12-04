@@ -235,7 +235,4 @@ class Snake {
   }
 }
 
-// 初始化游戏
-window.addEventListener('load', () => {
-  const game = new Snake()
-})
+new Snake()

@@ -1,0 +1,20 @@
+<div class="game-container">
+  <div class="game-info">
+    <div class="mines-count">剩余地雷: <span id="mines-count">0</span></div>
+    <div class="timer">用时: <span id="timer">0</span></div>
+    <div class="controls">
+      <select id="difficulty">
+        <option value="beginner">初级</option>
+        <option value="intermediate">中级</option>
+        <option value="expert">高级</option>
+      </select>
+      <button id="start-btn">新游戏</button>
+    </div>
+    <div class="instructions">
+      <h3>操作说明</h3>
+      <p>左键点击: 揭开方块</p>
+      <p>右键点击: 标记地雷</p>
+    </div>
+  </div>
+  <div id="minesweeper-grid"></div>
+</div>
