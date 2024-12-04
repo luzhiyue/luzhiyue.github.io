@@ -17,6 +17,10 @@ class Router {
     window.addEventListener('popstate', () => {
       this.handleLocation()
     })
+    window.addEventListener('hashchange', function () {
+      // 页面刷新
+      window.location.reload()
+    })
 
     // 修改初始加载逻辑
     const currentPath = window.location.hash.slice(1) || '/'

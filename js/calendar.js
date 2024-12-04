@@ -56,7 +56,7 @@ if (!window.calendar) {
     changeYear(delta) {
       this.date.setFullYear(this.date.getFullYear() + delta)
       this.render()
-      this.updateSolarTerm()
+      // this.updateSolarTerm()
     }
 
     updateYear() {

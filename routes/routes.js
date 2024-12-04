@@ -28,7 +28,10 @@ const routes = {
     template: '/templates/contact.html',
     title: '联系我们',
     styles: ['/css/contact.css'],
-    scripts: ['/js/contact.js'],
+    scripts: [
+      '/js/contact.js',
+      'https://api.map.baidu.com/api?v=3.0&ak=YXvh2NL9qtyIBJuoWCktypGXaG10iQ2j',
+    ],
   },
   '/404': {
     template: '/templates/404.html',
