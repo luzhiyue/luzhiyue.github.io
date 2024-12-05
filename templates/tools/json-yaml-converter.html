@@ -1,48 +1,37 @@
 <section class="tools-section">
   <div class="container">
-    <h1 class="tool-title">JSON/YAML转换工具</h1>
+    <h1 class="tool-title">JSON/YAML 转换器</h1>
 
     <div class="converter-tool">
-      <!-- 输入输出区域 -->
       <div class="editor-container">
-        <div class="input-panel">
+        <!-- 左侧输入面板 -->
+        <div class="panel">
           <div class="panel-header">
-            <h3>输入</h3>
             <select id="inputFormat">
               <option value="json">JSON</option>
               <option value="yaml">YAML</option>
             </select>
           </div>
-          <textarea
-            id="inputText"
-            class="code-editor"
-            placeholder="请输入JSON或YAML格式的数据..."
-          ></textarea>
+          <textarea id="inputText" class="code-editor" placeholder="输入JSON或YAML..."></textarea>
         </div>
 
-        <div class="controls">
-          <button id="convertBtn" class="tool-btn primary">转换 ➜</button>
-          <button id="swapBtn" class="tool-btn">交换 ⇅</button>
-          <button id="clearBtn" class="tool-btn danger">清空</button>
-          <button id="formatBtn" class="tool-btn">格式化</button>
-          <button id="copyBtn" class="tool-btn">复制</button>
-        </div>
-
-        <div class="output-panel">
+        <!-- 右侧输出面板 -->
+        <div class="panel">
           <div class="panel-header">
-            <h3>输出</h3>
             <select id="outputFormat">
               <option value="yaml">YAML</option>
               <option value="json">JSON</option>
             </select>
+            <button id="copyBtn" class="icon-btn" title="复制"></button>
           </div>
-          <textarea
-            id="outputText"
-            class="code-editor"
-            placeholder="转换结果将显示在这里..."
-            readonly
-          ></textarea>
+          <textarea id="outputText" class="code-editor" readonly></textarea>
         </div>
+      </div>
+
+      <div class="toolbar">
+        <button id="convertBtn" class="tool-btn">转换</button>
+        <button id="formatBtn" class="tool-btn">格式化</button>
+        <button id="clearBtn" class="tool-btn">清空</button>
       </div>
 
       <div id="errorMessage" class="error-message"></div>

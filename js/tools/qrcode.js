@@ -1,71 +1,93 @@
-const textInput = document.getElementById('textInput')
-const generateBtn = document.getElementById('generateBtn')
-const downloadBtn = document.getElementById('downloadBtn')
-const sizeSelect = document.getElementById('sizeSelect')
-const colorPicker = document.getElementById('colorPicker')
-const qrcodeDiv = document.getElementById('qrcode')
-
-let currentQR = null
-
-function generateQRCode() {
-  const text = textInput.value.trim()
-  if (!text) {
-    alert('请输入文本或URL')
-    return
+;(function () {
+  // 如果已经存在实例，先清理
+  if (window.qrcodeInstance) {
+    const oldInstance = window.qrcodeInstance
+    oldInstance.generateBtn?.removeEventListener('click', oldInstance.generateQRCode)
+    oldInstance.downloadBtn?.removeEventListener('click', oldInstance.downloadQRCode)
+    oldInstance.sizeSelect?.removeEventListener('change', oldInstance.generateQRCode)
+    oldInstance.colorPicker?.removeEventListener('change', oldInstance.generateQRCode)
+    window.qrcodeInstance = null
   }
 
-  // 清除之前的二维码
-  qrcodeDiv.innerHTML = ''
+  class QRCodeGenerator {
+    constructor() {
+      this.initElements()
+      this.bindEvents()
+    }
 
-  // 生成新的二维码
-  const size = parseInt(sizeSelect.value)
-  const color = colorPicker.value
+    initElements() {
+      this.textInput = document.getElementById('textInput')
+      this.generateBtn = document.getElementById('generateBtn')
+      this.downloadBtn = document.getElementById('downloadBtn')
+      this.sizeSelect = document.getElementById('sizeSelect')
+      this.colorPicker = document.getElementById('colorPicker')
+      this.qrcodeDiv = document.getElementById('qrcode')
+      this.currentQR = null
+    }
 
-  try {
-    QRCode.toCanvas(
-      document.createElement('canvas'),
-      text,
-      {
-        width: size,
-        height: size,
-        color: {
-          dark: color,
-          light: '#ffffff',
-        },
-      },
-      function (error, canvas) {
-        if (error) {
-          console.error('生成二维码出错:', error)
-          alert('生成二维码失败')
-          return
-        }
-        // 清除之前的内容并添加新的画布
-        qrcodeDiv.innerHTML = ''
-        qrcodeDiv.appendChild(canvas)
-        currentQR = canvas
+    bindEvents() {
+      this.generateQRCode = this.generateQRCode.bind(this)
+      this.downloadQRCode = this.downloadQRCode.bind(this)
+
+      this.generateBtn.addEventListener('click', this.generateQRCode)
+      this.downloadBtn.addEventListener('click', this.downloadQRCode)
+      this.sizeSelect.addEventListener('change', this.generateQRCode)
+      this.colorPicker.addEventListener('change', this.generateQRCode)
+    }
+
+    generateQRCode() {
+      const text = this.textInput.value.trim()
+      if (!text) {
+        alert('请输入文本或URL')
+        return
       }
-    )
-  } catch (error) {
-    console.error('生成二维码出错:', error)
-    alert('生成二维码失败，请检查输入')
+
+      this.qrcodeDiv.innerHTML = ''
+      const size = parseInt(this.sizeSelect.value)
+      const color = this.colorPicker.value
+
+      try {
+        QRCode.toCanvas(
+          document.createElement('canvas'),
+          text,
+          {
+            width: size,
+            height: size,
+            color: {
+              dark: color,
+              light: '#ffffff',
+            },
+          },
+          (error, canvas) => {
+            if (error) {
+              console.error('生成二维码出错:', error)
+              alert('生成二维码失败')
+              return
+            }
+            this.qrcodeDiv.innerHTML = ''
+            this.qrcodeDiv.appendChild(canvas)
+            this.currentQR = canvas
+          }
+        )
+      } catch (error) {
+        console.error('生成二维码出错:', error)
+        alert('生成二维码失败，请检查输入')
+      }
+    }
+
+    downloadQRCode() {
+      if (!this.currentQR) {
+        alert('请先生成二维码')
+        return
+      }
+
+      const link = document.createElement('a')
+      link.download = 'qrcode.png'
+      link.href = this.currentQR.toDataURL()
+      link.click()
+    }
   }
-}
 
-function downloadQRCode() {
-  if (!currentQR) {
-    alert('请先生成二维码')
-    return
-  }
-
-  const link = document.createElement('a')
-  link.download = 'qrcode.png'
-  link.href = currentQR.toDataURL()
-  link.click()
-}
-
-generateBtn.addEventListener('click', generateQRCode)
-downloadBtn.addEventListener('click', downloadQRCode)
-
-// 当选项改变时自动重新生成二维码
-sizeSelect.addEventListener('change', generateQRCode)
-colorPicker.addEventListener('change', generateQRCode)
+  // 创建新实例并保存到window对象
+  window.qrcodeInstance = new QRCodeGenerator()
+})()

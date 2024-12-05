@@ -17,11 +17,12 @@ class Router {
     window.addEventListener('popstate', () => {
       this.handleLocation()
     })
-    window.addEventListener('hashchange', function () {
-      // 页面刷新
-      window.location.reload()
-    })
 
+    // window.addEventListener('hashchange', () => {
+    //   this.handleLocation()
+    //   // 页面刷新
+    //   // window.location.reload()
+    // })
     // 修改初始加载逻辑
     const currentPath = window.location.hash.slice(1) || '/'
     if (currentPath === '/index.html') {
@@ -33,7 +34,7 @@ class Router {
       } else {
         // 直接处理当前路径
         this.handleLocation()
-        // 确保导航栏状态正确
+        // 确保导航��状态正确
         this.updateActiveNav(currentPath)
       }
     }
@@ -67,6 +68,8 @@ class Router {
       const content = await this.loadContent(route.template)
       if (content) {
         this.cleanupPageInstances()
+        this.cleanupScripts()
+        this.cleanupStyles()
         this.contentDiv.innerHTML = ''
 
         // 如果是工具页面，添加返回按钮
@@ -136,10 +139,11 @@ class Router {
   }
 
   async loadScript(src) {
-    if (this.loadedScripts.has(src)) {
-      return Promise.resolve()
+    // 先检查并移除已存在��脚本标签
+    const existingScript = document.querySelector(`script[src="${src}"]`)
+    if (existingScript) {
+      existingScript.remove()
     }
-
     return new Promise((resolve, reject) => {
       const script = document.createElement('script')
       script.src = src
@@ -162,8 +166,11 @@ class Router {
   }
 
   async loadStyle(href) {
-    if (this.loadedStyles.has(href)) {
-      return Promise.resolve()
+    // 先检查并移除已存在的样式表
+    const existingLink = document.querySelector(`link[href="${href}"]`)
+    if (existingLink) {
+      existingLink.remove()
+      this.loadedStyles.delete(href)
     }
 
     return new Promise((resolve, reject) => {
@@ -209,7 +216,7 @@ class Router {
         backButton.classList.add('nav-link')
       }
 
-      // 返回包含样式和按钮的容器
+      // 返回包含样���和按钮的容器
       const container = document.createElement('div')
       container.innerHTML = html
       return container
@@ -240,5 +247,31 @@ class Router {
     } catch (error) {
       return null
     }
+  }
+
+  // 添加清理脚本的方法
+  cleanupScripts() {
+    // 移除所有已加载的脚本
+    this.loadedScripts.forEach((src) => {
+      const existingScript = document.querySelector(`script[src="${src}"]`)
+      if (existingScript) {
+        existingScript.remove()
+      }
+    })
+    // 清空已加载脚本集合
+    this.loadedScripts.clear()
+  }
+
+  // 添加清理样式的方法
+  cleanupStyles() {
+    // 移除所有已加载的样式表
+    this.loadedStyles.forEach((href) => {
+      const existingLink = document.querySelector(`link[href="${href}"]`)
+      if (existingLink) {
+        existingLink.remove()
+      }
+    })
+    // 清空已加载样式集合
+    this.loadedStyles.clear()
   }
 }

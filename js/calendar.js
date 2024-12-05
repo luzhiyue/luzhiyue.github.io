@@ -1,5 +1,21 @@
-// 检查是否已经存在实例
-if (!window.calendar) {
+// 使用立即执行函数来避免全局变量污染
+;(function () {
+  // 如果已经存在实例，先清理
+  if (window.calendarInstance) {
+    // 移除事件监听器
+    document
+      .querySelector('.prev-year')
+      ?.removeEventListener('click', () => window.calendarInstance.changeYear(-1))
+    document
+      .querySelector('.next-year')
+      ?.removeEventListener('click', () => window.calendarInstance.changeYear(1))
+    document
+      .querySelector('.today-btn')
+      ?.removeEventListener('click', () => window.calendarInstance.goToToday())
+
+    window.calendarInstance = null
+  }
+
   class Calendar {
     constructor() {
       this.date = new Date()
@@ -154,6 +170,6 @@ if (!window.calendar) {
     // ... 其他日历相关方法
   }
 
-  // 创建全局实例
-  window.calendar = new Calendar()
-}
+  // 创建新实例并保存到window对象
+  window.calendarInstance = new Calendar()
+})()

@@ -1,5 +1,20 @@
-// 检查是否已经存在实例
-if (!window.weatherApp) {
+;(function () {
+  // 如果已经存在实例，先销毁
+  if (window.weatherApp) {
+    // 清理事件监听器
+    const searchBtn = document.getElementById('searchBtn')
+    const searchInput = document.getElementById('searchInput')
+
+    if (searchBtn) {
+      searchBtn.removeEventListener('click', window.weatherApp.searchWeather)
+    }
+    if (searchInput) {
+      searchInput.removeEventListener('keypress', window.weatherApp.searchWeather)
+    }
+
+    window.weatherApp = null
+  }
+
   class WeatherApp {
     constructor() {
       this.API_KEY = 'b1810ac0064baf1fe8ebc28f16a81145'
@@ -42,7 +57,7 @@ if (!window.weatherApp) {
         })
         .catch((error) => {
           console.error('Error fetching weather data:', error)
-          this.showError('获取天气信息失败')
+          this.showError('获取天气息失败')
         })
     }
 
@@ -113,13 +128,37 @@ if (!window.weatherApp) {
     }
 
     updateCurrentWeather(data) {
-      document.querySelector('.location h2').textContent = data.name
-      document.querySelector('.temp').textContent = Math.round(data.main.temp)
-      document.querySelector('.weather-description span').textContent = data.weather[0].description
-      document.querySelector('.weather-icon i').className = this.getWeatherIcon(data.weather[0].id)
-      document.querySelector('.humidity').textContent = `${data.main.humidity}%`
-      document.querySelector('.wind').textContent = `${data.wind.speed} m/s`
-      document.querySelector('.pressure').textContent = `${data.main.pressure} hPa`
+      // 获取所有需要的元素
+      const locationElement = document.querySelector('.location h2')
+      const tempElement = document.querySelector('.temp')
+      const descriptionElement = document.querySelector('.weather-description span')
+      const iconElement = document.querySelector('.weather-icon i')
+      const humidityElement = document.querySelector('.humidity')
+      const windElement = document.querySelector('.wind')
+      const pressureElement = document.querySelector('.pressure')
+
+      // 检查所有元素是否存在
+      if (
+        !locationElement ||
+        !tempElement ||
+        !descriptionElement ||
+        !iconElement ||
+        !humidityElement ||
+        !windElement ||
+        !pressureElement
+      ) {
+        console.warn('Weather UI elements not found, skipping update')
+        return
+      }
+
+      // 更新元素内容
+      locationElement.textContent = data.name
+      tempElement.textContent = Math.round(data.main.temp)
+      descriptionElement.textContent = data.weather[0].description
+      iconElement.className = this.getWeatherIcon(data.weather[0].id)
+      humidityElement.textContent = `${data.main.humidity}%`
+      windElement.textContent = `${data.wind.speed} m/s`
+      pressureElement.textContent = `${data.main.pressure} hPa`
     }
 
     updateHourlyForecast(forecast) {
@@ -205,6 +244,6 @@ if (!window.weatherApp) {
     }
   }
 
-  // 创建全局实例
+  // 创建新实例并保存到window对象
   window.weatherApp = new WeatherApp()
-}
+})()
