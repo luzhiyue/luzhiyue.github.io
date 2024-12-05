@@ -34,7 +34,7 @@ class Router {
       } else {
         // 直接处理当前路径
         this.handleLocation()
-        // 确保导航��状态正确
+        // 确保导航状态正确
         this.updateActiveNav(currentPath)
       }
     }
@@ -139,7 +139,7 @@ class Router {
   }
 
   async loadScript(src) {
-    // 先检查并移除已存在��脚本标签
+    // 先检查并移除已存在脚本标签
     const existingScript = document.querySelector(`script[src="${src}"]`)
     if (existingScript) {
       existingScript.remove()
@@ -216,7 +216,7 @@ class Router {
         backButton.classList.add('nav-link')
       }
 
-      // 返回包含样���和按钮的容器
+      // 返回包含样式和按钮的容器
       const container = document.createElement('div')
       container.innerHTML = html
       return container

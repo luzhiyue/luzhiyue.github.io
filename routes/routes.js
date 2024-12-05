@@ -28,11 +28,11 @@ const routes = {
   '/contact': {
     template: '/templates/contact.html',
     title: '联系我们',
-    styles: ['/css/contact.css'],
-    scripts: [
-      'https://api.map.baidu.com/api?v=3.0&ak=YXvh2NL9qtyIBJuoWCktypGXaG10iQ2j',
-      '/js/contact.js',
+    styles: [
+      '/css/contact.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
     ],
+    scripts: ['/js/contact.js'],
   },
   '/404': {
     template: '/templates/404.html',
