@@ -147,7 +147,7 @@
         !windElement ||
         !pressureElement
       ) {
-        console.warn('Weather UI elements not found, skipping update')
+        // console.warn('Weather UI elements not found, skipping update')
         return
       }
 
@@ -164,7 +164,7 @@
     updateHourlyForecast(forecast) {
       const hourlyList = document.getElementById('hourlyList')
       if (!hourlyList) {
-        console.error('Element with id "hourlyList" not found.')
+        // console.error('Element with id "hourlyList" not found.')
         return
       }
 
@@ -189,7 +189,7 @@
     updateFutureForecast(forecast) {
       const futureList = document.getElementById('futureList')
       if (!futureList) {
-        console.error('Element with id "futureList" not found.')
+        // console.error('Element with id "futureList" not found.')
         return
       }
 
