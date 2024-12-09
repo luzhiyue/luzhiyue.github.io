@@ -19,6 +19,11 @@ const routes = {
     styles: ['/css/tools.css'],
     scripts: ['/js/tools/search.js'],
   },
+  '/notes': {
+    template: '/templates/notes.html',
+    title: '备忘录',
+    styles: ['/css/notes.css'],
+  },
   '/games': {
     template: '/templates/games.html',
     title: '游戏集合',
@@ -230,6 +235,33 @@ Object.entries(gameRoutes).forEach(([path, config]) => {
     title: config.title,
     styles: config.styles,
     scripts: config.scripts,
+  }
+})
+
+const noteRoutes = {
+  git: {
+    title: 'Git 备忘录',
+    styles: ['/css/notes.css'],
+  },
+  linux: {
+    title: 'Linux 备忘录',
+    styles: ['/css/notes.css'],
+  },
+  docker: {
+    title: 'Docker 备忘录',
+    styles: ['/css/notes.css'],
+  },
+  mysql: {
+    title: 'MySQL 备忘录',
+    styles: ['/css/notes.css'],
+  },
+}
+
+Object.entries(noteRoutes).forEach(([path, config]) => {
+  routes[`/notes/${path}`] = {
+    template: `/templates/notes/${path}.html`,
+    title: config.title,
+    styles: config.styles,
   }
 })
 

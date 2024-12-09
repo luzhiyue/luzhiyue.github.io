@@ -1,0 +1,147 @@
+<section class="note-detail">
+  <div class="container">
+    <h1>MySQL 备忘录</h1>
+    <ul>
+      <p>查看 MySQL 版本</p>
+      <li><code>mysql --version</code></li>
+
+      <h2>基础操作</h2>
+      <p>以指定用户登录 MySQL</p>
+      <li><code>mysql -u [user] -p</code></li>
+      <p>列出所有数据库</p>
+      <li><code>SHOW DATABASES;</code></li>
+      <p>创建新数据库</p>
+      <li><code>CREATE DATABASE [database];</code></li>
+      <p>删除数据库</p>
+      <li><code>DROP DATABASE [database];</code></li>
+      <p>选择数据库</p>
+      <li><code>USE [database];</code></li>
+
+      <h2>表操作</h2>
+      <p>列出当前数据库中的所有表</p>
+      <li><code>SHOW TABLES;</code></li>
+      <p>创建新表</p>
+      <li><code>CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></li>
+      <p>删除表</p>
+      <li><code>DROP TABLE [table];</code></li>
+
+      <h2>数据查询</h2>
+      <p>基础查询</p>
+      <li><code>SELECT * FROM users WHERE age > 18;</code></li>
+      <p>多表联接查询</p>
+      <li><code>SELECT orders.order_id, users.username 
+FROM orders 
+INNER JOIN users ON orders.user_id = users.id;</code></li>
+      <p>分组查询</p>
+      <li><code>SELECT category, COUNT(*) as count 
+FROM products 
+GROUP BY category 
+HAVING count > 5;</code></li>
+
+      <h2>数据操作</h2>
+      <p>插入单条数据</p>
+      <li><code>INSERT INTO users (username, email) VALUES ('john', 'john@example.com');</code></li>
+      <p>批量插入数据</p>
+      <li><code>INSERT INTO users (username, email) VALUES 
+('user1', 'user1@example.com'),
+('user2', 'user2@example.com');</code></li>
+      <p>更新数据</p>
+      <li><code>UPDATE users SET status = 'active' WHERE last_login >= DATE_SUB(NOW(), INTERVAL 7 DAY);</code></li>
+      <p>删除数据</p>
+      <li><code>DELETE FROM users WHERE status = 'inactive' AND last_login < DATE_SUB(NOW(), INTERVAL 1 YEAR);</code></li>
+
+      <h2>字符串函数</h2>
+      <p>字符串连接</p>
+      <li><code>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM users;</code></li>
+      <p>字符串长度</p>
+      <li><code>SELECT LENGTH(description) as desc_length FROM products;</code></li>
+      <p>字符串截取</p>
+      <li><code>SELECT SUBSTRING(content, 1, 100) as preview FROM articles;</code></li>
+      <p>字符串替换</p>
+      <li><code>SELECT REPLACE(title, 'old', 'new') FROM posts;</code></li>
+
+      <h2>日期时间函数</h2>
+      <p>获取当前日期时间</p>
+      <li><code>SELECT NOW(), CURDATE(), CURTIME();</code></li>
+      <p>日期格式化</p>
+      <li><code>SELECT DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') FROM orders;</code></li>
+      <p>日期计算</p>
+      <li><code>SELECT DATE_ADD(NOW(), INTERVAL 7 DAY) as next_week;</code></li>
+      <p>日期差值</p>
+      <li><code>SELECT DATEDIFF(end_date, start_date) as days_between FROM projects;</code></li>
+
+      <h2>数值函数</h2>
+      <p>四舍五入</p>
+      <li><code>SELECT ROUND(price, 2) FROM products;</code></li>
+      <p>向上取整</p>
+      <li><code>SELECT CEIL(rating) FROM reviews;</code></li>
+      <p>向下取整</p>
+      <li><code>SELECT FLOOR(amount) FROM transactions;</code></li>
+
+      <h2>聚合函数</h2>
+      <p>计数</p>
+      <li><code>SELECT COUNT(DISTINCT user_id) FROM orders;</code></li>
+      <p>求和</p>
+      <li><code>SELECT SUM(amount) FROM transactions WHERE YEAR(created_at) = 2024;</code></li>
+      <p>平均值</p>
+      <li><code>SELECT AVG(rating) FROM reviews GROUP BY product_id;</code></li>
+      <p>最大值和最小值</p>
+      <li><code>SELECT MAX(price), MIN(price) FROM products WHERE category = 'electronics';</code></li>
+
+      <h2>条件控制</h2>
+      <p>IF 条件</p>
+      <li><code>SELECT product_name, IF(stock > 0, 'In Stock', 'Out of Stock') as status FROM products;</code></li>
+      <p>CASE 表达式</p>
+      <li><code>SELECT order_id,
+    CASE 
+        WHEN amount < 100 THEN 'Small Order'
+        WHEN amount < 1000 THEN 'Medium Order'
+        ELSE 'Large Order'
+    END as order_size
+FROM orders;</code></li>
+
+      <h2>索引操作</h2>
+      <p>创建索引</p>
+      <li><code>CREATE INDEX idx_username ON users(username);</code></li>
+      <p>创建复合索引</p>
+      <li><code>CREATE INDEX idx_name_email ON users(username, email);</code></li>
+      <p>删除索引</p>
+      <li><code>DROP INDEX idx_username ON users;</code></li>
+      <p>查看表索引</p>
+      <li><code>SHOW INDEX FROM users;</code></li>
+
+      <h2>事务控制</h2>
+      <p>开始事务</p>
+      <li><code>START TRANSACTION;</code></li>
+      <p>提交事务</p>
+      <li><code>COMMIT;</code></li>
+      <p>回滚事务</p>
+      <li><code>ROLLBACK;</code></li>
+
+      <h2>用户权限</h2>
+      <p>创建用户</p>
+      <li><code>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';</code></li>
+      <p>授权</p>
+      <li><code>GRANT ALL PRIVILEGES ON database_name.* TO 'user'@'localhost';</code></li>
+      <p>查看用户权限</p>
+      <li><code>SHOW GRANTS FOR 'user'@'localhost';</code></li>
+      <p>撤销权限</p>
+      <li><code>REVOKE ALL PRIVILEGES ON database_name.* FROM 'user'@'localhost';</code></li>
+      <p>刷新权限</p>
+      <li><code>FLUSH PRIVILEGES;</code></li>
+
+      <h2>性能优化</h2>
+      <p>查看执行计划</p>
+      <li><code>EXPLAIN SELECT * FROM users WHERE username = 'john';</code></li>
+      <p>优化表</p>
+      <li><code>OPTIMIZE TABLE users;</code></li>
+      <p>分析表</p>
+      <li><code>ANALYZE TABLE users;</code></li>
+    </ul>
+  </div>
+</section>

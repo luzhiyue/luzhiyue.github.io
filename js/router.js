@@ -87,6 +87,12 @@ class Router {
             this.contentDiv.appendChild(backButton)
           }
         }
+        if (path.startsWith('/notes/') && path !== '/notes') {
+          const backButton = await this.loadNotesBackButton()
+          if (backButton) {
+            this.contentDiv.appendChild(backButton)
+          }
+        }
 
         this.contentDiv.appendChild(content)
         document.title = route.title
@@ -227,6 +233,31 @@ class Router {
   async loadGamesBackButton() {
     try {
       const response = await fetch('/templates/games/back-button.html')
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const html = await response.text()
+      const parser = new DOMParser()
+      const doc = parser.parseFromString(html, 'text/html')
+
+      // 添加 nav-link 类以支持路由
+      const backButton = doc.querySelector('.back-button')
+      if (backButton) {
+        backButton.classList.add('nav-link')
+      }
+
+      // 返回包含样式和按钮的容器
+      const container = document.createElement('div')
+      container.innerHTML = html
+      return container
+    } catch (error) {
+      return null
+    }
+  }
+
+  async loadNotesBackButton() {
+    try {
+      const response = await fetch('/templates/notes/back-button.html')
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }

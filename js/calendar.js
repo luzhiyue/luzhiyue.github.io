@@ -53,7 +53,7 @@
         if (!isNaN(year) && year.toString().length === 4) {
           this.date.setFullYear(year)
           this.render()
-          this.updateSolarTerm()
+          // this.updateSolarTerm()
         }
       })
       this.yearElem.addEventListener('blur', (e) => {
@@ -63,7 +63,7 @@
         }
         this.date.setFullYear(year)
         this.render()
-        this.updateSolarTerm()
+        // this.updateSolarTerm()
       })
       this.monthElem.addEventListener('change', () => this.updateMonth())
       this.todayBtn.addEventListener('click', () => this.goToToday())
@@ -80,7 +80,7 @@
       if (!isNaN(year)) {
         this.date.setFullYear(year)
         this.render()
-        this.updateSolarTerm()
+        // this.updateSolarTerm()
       }
     }
 
@@ -89,7 +89,7 @@
       if (!isNaN(month)) {
         this.date.setMonth(month)
         this.render()
-        this.updateSolarTerm()
+        // this.updateSolarTerm()
       }
     }
 
